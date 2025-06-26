@@ -94,7 +94,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { cartStore, cartNotification } from '../stores/cart';
+import { cartStore, cartNotification } from '../stores/cart.ts';
 
 const showAgeVerification = ref(true);
 

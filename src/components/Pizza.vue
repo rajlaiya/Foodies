@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { cartStore, cartNotification } from '../stores/cart'
+import { cartStore, cartNotification } from '../stores/cart.ts'
 
 const pizzaMenu = [
   {

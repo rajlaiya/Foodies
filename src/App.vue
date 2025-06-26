@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
-import { cartNotification, cartStore } from './stores/cart';
+import { cartNotification, cartStore } from './stores/cart.ts';
 import FloatingCart from './components/FloatingCart.vue';
 
 const isMobile = ref(false);
