@@ -320,70 +320,136 @@ const openLink = (url: string) => {
 /* Responsive Design */
 @media (max-width: 768px) {
   .contact-page {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
   }
   
   .contact-container {
-    padding-top: 2rem;
+    padding-top: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .hero-section {
+    margin-bottom: 2rem;
+    text-align: center;
   }
   
   .main-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
   }
   
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
   }
   
   .social-cards-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
   
   .social-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
     gap: 1rem;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
   }
   
   .card-icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
   }
   
   .card-icon svg {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .card-content h3 {
-    font-size: 1.2rem;
-  }
-  
-  .additional-info {
-    padding: 1.5rem;
-  }
-  
-  .info-text {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-title {
-    font-size: 1.8rem;
-  }
-  
-  .social-card {
-    padding: 1.2rem;
-    border-radius: 15px;
+    width: 22px;
+    height: 22px;
   }
   
   .card-content h3 {
     font-size: 1.1rem;
+    margin-bottom: 0.25rem;
   }
   
   .card-content p {
+    font-size: 0.85rem;
+  }
+  
+  .additional-info {
+    padding: 1.25rem;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  .info-text {
     font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .contact-container {
+    padding-top: 0.5rem;
+  }
+  
+  .main-title {
+    font-size: 1.6rem;
+    line-height: 1.3;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .social-cards-grid {
+    gap: 0.75rem;
+  }
+  
+  .social-card {
+    padding: 1rem;
+    border-radius: 12px;
+    gap: 0.75rem;
+  }
+  
+  .card-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .card-content h3 {
+    font-size: 1rem;
+  }
+  
+  .card-content p {
+    font-size: 0.8rem;
+  }
+  
+  .card-arrow {
+    font-size: 1.25rem;
+  }
+  
+  .additional-info {
+    padding: 1rem;
+  }
+  
+  .info-text {
+    font-size: 0.85rem;
   }
 }
 </style>

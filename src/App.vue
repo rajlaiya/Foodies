@@ -302,14 +302,15 @@ header {
   .navbar-links li, .navbar-links a, .dropbtn {
     width: 100%;
     text-align: left;
-    font-size: 1.1rem;
-    padding: 0.7rem 0.8rem;
+    font-size: 0.95rem;
+    padding: 0.6rem 0.7rem;
     box-sizing: border-box;
     color: #fff;
     border-radius: 6px;
     display: block;
     white-space: normal;
     word-break: break-word;
+    line-height: 1.3;
   }
   .dropdown-content {
     position: static;
@@ -320,10 +321,11 @@ header {
     padding-left: 1rem;
   }
   .dropdown-content a {
-    padding: 0.5rem 0.8rem;
-    font-size: 1rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
     color: #fff;
     background: none;
+    line-height: 1.2;
   }
   .dropdown-content a:hover {
     background: rgba(255,255,255,0.10);

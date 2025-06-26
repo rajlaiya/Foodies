@@ -361,38 +361,139 @@ const addToCart = (drink: any) => {
 }
 
 @media (max-width: 768px) {
-  .colddrinks-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .colddrinks-section {
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
   }
   
   .container {
-    padding: 0 0.5rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    padding: 0;
+    max-width: 100%;
   }
   
   .content-wrapper {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 0 0.5rem;
+    padding: 0;
+    text-align: center;
   }
   
-  .colddrinks-hero-image {
-    width: 200px;
-    height: 200px;
+  .left-section {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
   
   .text-block {
-    font-size: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
   }
   
+  .right-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .colddrinks-hero-image {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .colddrinks-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .colddrinks-card {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+  
+  .colddrinks-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .colddrinks-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .colddrinks-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .colddrinks-meta {
+    margin-bottom: 1rem;
+  }
+  
+  .colddrinks-price {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .colddrinks-type, .colddrinks-size {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
   .colddrinks-section {
-    height: 70vh;
-    padding-top: 1rem;
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .text-block {
+    font-size: 0.9rem;
+  }
+  
+  .colddrinks-hero-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .colddrinks-card {
+    padding: 1rem;
+  }
+  
+  .colddrinks-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .colddrinks-name {
+    font-size: 1.1rem;
+  }
+  
+  .colddrinks-description {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
   }
 }
 </style>

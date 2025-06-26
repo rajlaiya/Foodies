@@ -652,38 +652,187 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-  .alkhol-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .alkhol-section {
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
   }
   
   .container {
-    padding: 0 0.5rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    padding: 0;
+    max-width: 100%;
   }
   
   .content-wrapper {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 0 0.5rem;
+    padding: 0;
+    text-align: center;
   }
   
-  .alkhol-hero-image {
-    width: 200px;
-    height: 200px;
+  .left-section {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
   
   .text-block {
-    font-size: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
   }
   
+  .right-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .alkhol-hero-image {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .alkhol-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .alkhol-card {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+  
+  .alkhol-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .alkhol-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .alkhol-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .alkhol-meta {
+    margin-bottom: 1rem;
+  }
+  
+  .alkhol-price {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .alkhol-type, .alkhol-ml {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Age verification modal mobile styles */
+  .modal-content {
+    width: 90%;
+    max-width: 350px;
+    padding: 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  .modal-title {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+  
+  .modal-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .modal-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
   .alkhol-section {
-    height: 70vh;
-    padding-top: 1rem;
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .text-block {
+    font-size: 0.9rem;
+  }
+  
+  .alkhol-hero-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .alkhol-card {
+    padding: 1rem;
+  }
+  
+  .alkhol-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .alkhol-name {
+    font-size: 1.1rem;
+  }
+  
+  .alkhol-description {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .modal-content {
+    width: 95%;
+    max-width: 320px;
+    padding: 1.25rem;
+  }
+  
+  .modal-title {
+    font-size: 1.2rem;
+  }
+  
+  .modal-text {
+    font-size: 0.85rem;
+  }
+  
+  .modal-btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.85rem;
   }
 }
 </style>

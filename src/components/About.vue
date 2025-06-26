@@ -367,34 +367,88 @@ body, html, #app {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .about-section {
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+  
   .content-wrapper {
     flex-direction: column;
-    gap: 2rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 1rem 0;
     text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .left-section {
+    width: 100%;
+    margin-bottom: 1rem;
   }
   
   .animated-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
   }
   
   .right-section {
     padding-left: 0;
+    width: 100%;
   }
   
   .text-block {
-    font-size: 1rem;
+    font-size: 0.95rem;
     max-width: 100%;
+    line-height: 1.6;
+    margin-bottom: 1rem;
   }
   
   .veggie {
-    width: 50px !important;
-    height: 50px !important;
+    width: 45px !important;
+    height: 45px !important;
   }
   
   .contact-btn {
-    padding: 0.8rem 1.5rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+  
+  .btn-icon {
     font-size: 1rem;
+  }
+  
+  .btn-arrow {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .animated-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .text-block {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .veggie {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .contact-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
   }
 }
 

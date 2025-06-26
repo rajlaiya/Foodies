@@ -360,43 +360,140 @@ const addToCart = (item) => {
 }
 
 @media (max-width: 768px) {
-  .breakfast-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .breakfast-section {
+    padding: 1rem 0.75rem;
+    min-height: 100vh;
   }
   
   .container {
-    padding: 0 0.5rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    padding: 0;
+    max-width: 100%;
   }
   
   .content-wrapper {
     flex-direction: column;
     gap: 1.5rem;
-    padding: 0 0.5rem;
+    padding: 0;
+    text-align: center;
   }
   
-  .breakfast-hero-image {
-    width: 200px;
-    height: 200px;
+  .left-section {
+    width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
   
   .text-block {
-    font-size: 16px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
   }
   
+  .right-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .breakfast-hero-image {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .breakfast-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .breakfast-card {
+    padding: 1.25rem;
+    max-width: 100%;
+  }
+  
+  .breakfast-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+  
+  .breakfast-name {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .breakfast-description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  
+  .breakfast-meta {
+    margin-bottom: 1rem;
+  }
+  
+  .breakfast-price {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .breakfast-type, .breakfast-cuisine {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
   .breakfast-section {
-    height: 70vh;
-    padding-top: 1rem;
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .text-block {
+    font-size: 0.9rem;
+  }
+  
+  .breakfast-hero-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .breakfast-card {
+    padding: 1rem;
+  }
+  
+  .breakfast-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .breakfast-name {
+    font-size: 1.1rem;
+  }
+  
+  .breakfast-description {
+    font-size: 0.8rem;
+  }
+  
+  .add-to-cart-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
   }
 }
 </style>
-}
-.left-section {
-  flex: 1;
-  text-align: center;
 
