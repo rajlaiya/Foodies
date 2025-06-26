@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { cartStore, cartNotification } from '../stores/cart.js'
+import { cartStore, cartNotification } from '../stores/cart'
 
 const mealMenu = [
   // Gujarati Dishes
@@ -143,14 +143,14 @@ const mealMenu = [
     cuisine: "South Indian",
     price: 10.99,
     image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=300&h=200&fit=crop&crop=center"
-  },
-  {
+  },  {
     id: 12,
     name: "Filter Coffee",
     description: "Authentic South Indian filter coffee served in traditional style",
     cuisine: "South Indian",
     price: 4.99,
-    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop&crop=center"  },
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop&crop=center"
+  },
   
   // Punjabi Dishes
   {

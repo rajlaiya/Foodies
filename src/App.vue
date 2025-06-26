@@ -2,7 +2,7 @@
   <div id="app" class="asphalt-bg">
     <!-- Global Cart Notification -->
     <transition name="notification">
-      <div v-if="cartNotification.show" class="global-notification">
+      <div v-if="cartNotification.visible" class="global-notification">
         {{ cartNotification.message }}
       </div>
     </transition>
@@ -40,7 +40,7 @@
           <li class="cart-link">
             <router-link to="/cart" @click="closeSidebar">
               Cart
-              <span v-if="cartStore.itemCount > 0" class="cart-badge">{{ cartStore.itemCount }}</span>
+              <span v-if="cartStore.getItemCount() > 0" class="cart-badge">{{ cartStore.getItemCount() }}</span>
             </router-link>
           </li>
           <li><router-link to="/contact" @click="closeSidebar">Contact</router-link></li>
@@ -56,7 +56,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
-import { cartNotification, cartStore } from './stores/cart.js';
+import { cartNotification, cartStore } from './stores/cart';
 import FloatingCart from './components/FloatingCart.vue';
 
 const isMobile = ref(false);
@@ -73,8 +73,6 @@ function closeSidebar() {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
-  // Set floating cart ref for global access
-  cartNotification.setFloatingCartRef(floatingCart.value);
 });
 
 onUnmounted(() => {

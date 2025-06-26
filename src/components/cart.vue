@@ -1,15 +1,14 @@
 <template>
     <section class="cart-section">
         <div class="cart-header">
-            <h2>🛒 Your Cart</h2>
-            <div class="cart-count" v-if="cartStore.itemCount > 0">
-                {{ cartStore.itemCount }} items
+            <h2>🛒 Your Cart</h2>            <div class="cart-count" v-if="cartStore.getItemCount() > 0">
+                {{ cartStore.getItemCount() }} items
             </div>
         </div>
         
         <!-- Cart Notification -->
         <transition name="notification">
-            <div v-if="cartNotification.show" class="cart-notification">
+            <div v-if="cartNotification.visible" class="cart-notification">
                 {{ cartNotification.message }}
             </div>
         </transition>
@@ -100,17 +99,15 @@
             
             <!-- Cart Summary -->
             <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Subtotal ({{ cartStore.selectedItemCount }} items):</span>
-                    <span class="price">${{ cartStore.selectedTotal.toFixed(2) }}</span>
+                <div class="summary-row">                    <span>Subtotal ({{ cartStore.getSelectedItems().length }} items):</span>
+                    <span class="price">${{ cartStore.getSelectedTotal().toFixed(2) }}</span>
                 </div>
                 <div class="summary-row">
                     <span>Delivery Fee:</span>
                     <span class="price">$2.99</span>
                 </div>
-                <div class="summary-row total-row">
-                    <span>Total:</span>
-                    <span class="price">${{ (cartStore.selectedTotal + 2.99).toFixed(2) }}</span>
+                <div class="summary-row total-row">                    <span>Total:</span>
+                    <span class="price">${{ (cartStore.getSelectedTotal() + 2.99).toFixed(2) }}</span>
                 </div>
                 
                 <div class="action-buttons">
@@ -124,7 +121,7 @@
                     <button 
                         @click="buyNow" 
                         class="btn buy-now-btn"
-                        :disabled="cartStore.selectedItemCount === 0"
+                        :disabled="cartStore.getSelectedItems().length === 0"
                         :class="{ 'buying': isBuying }"
                     >
                         <span v-if="!isBuying">💳 Buy Now</span>
@@ -140,7 +137,7 @@
 </template>
 
 <script>
-import { cartStore, cartNotification } from '../stores/cart.js'
+import { cartStore, cartNotification } from '../stores/cart'
 
 export default {
     name: "Cart",
@@ -193,9 +190,8 @@ export default {
             // Force reactivity update
             this.$forceUpdate()
         },
-        
-        async buyNow() {
-            if (this.cartStore.selectedItemCount === 0) {
+          async buyNow() {
+            if (this.cartStore.getSelectedItems().length === 0) {
                 this.cartNotification.showNotification('Please select items to purchase')
                 return
             }
@@ -206,8 +202,8 @@ export default {
             try {
                 await new Promise(resolve => setTimeout(resolve, 2000))
                 
-                const selectedItems = this.cartStore.items.filter(item => item.selected)
-                const total = this.cartStore.selectedTotal + 2.99
+                const selectedItems = this.cartStore.getSelectedItems()
+                const total = this.cartStore.getSelectedTotal() + 2.99
                 
                 // Remove selected items from cart
                 selectedItems.forEach(item => {

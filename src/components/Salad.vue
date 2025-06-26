@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { cartStore, cartNotification } from '../stores/cart.js'
+import { cartStore, cartNotification } from '../stores/cart'
 
 const saladMenu = [
   {
