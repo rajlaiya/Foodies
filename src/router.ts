@@ -13,6 +13,7 @@ import Pizza from './components/Pizza.vue';
 import Burger from './components/Burger.vue';
 
 const routes = [
+  { path: '/', redirect: '/about' },
   { path: '/about', component: About },
   { path: '/breakfast', component: BreakfastMasti },
   { path: '/meal', component: Meal },

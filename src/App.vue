@@ -1,5 +1,15 @@
 <template>
   <div id="app" class="asphalt-bg">
+    <!-- Global Cart Notification -->
+    <transition name="notification">
+      <div v-if="cartNotification.show" class="global-notification">
+        {{ cartNotification.message }}
+      </div>
+    </transition>
+    
+    <!-- Floating Cart Animation -->
+    <FloatingCart ref="floatingCart" />
+    
     <header>
       <button class="sidebar-toggle" v-if="isMobile && !sidebarOpen" @click="sidebarOpen = !sidebarOpen">
         <span>☰</span>
@@ -27,7 +37,12 @@
               <router-link to="/alcohol" @click="closeSidebar">Alkhol Point</router-link>
             </div>
           </li>
-          <li><router-link to="/cart" @click="closeSidebar">Cart</router-link></li>
+          <li class="cart-link">
+            <router-link to="/cart" @click="closeSidebar">
+              Cart
+              <span v-if="cartStore.itemCount > 0" class="cart-badge">{{ cartStore.itemCount }}</span>
+            </router-link>
+          </li>
           <li><router-link to="/contact" @click="closeSidebar">Contact</router-link></li>
         </ul>
       </nav>
@@ -41,9 +56,12 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
+import { cartNotification, cartStore } from './stores/cart.js';
+import FloatingCart from './components/FloatingCart.vue';
 
 const isMobile = ref(false);
 const sidebarOpen = ref(false);
+const floatingCart = ref();
 
 function checkMobile() {
   isMobile.value = window.innerWidth <= 700;
@@ -55,7 +73,10 @@ function closeSidebar() {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
+  // Set floating cart ref for global access
+  cartNotification.setFloatingCartRef(floatingCart.value);
 });
+
 onUnmounted(() => {
   window.removeEventListener('resize', checkMobile);
 });
@@ -160,6 +181,64 @@ header {
   background: rgba(0,0,0,0.25);
   z-index: 1999;
 }
+
+/* Global Cart Notification */
+.global-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: linear-gradient(45deg, #4caf50, #45a049);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  max-width: 300px;
+  backdrop-filter: blur(10px);
+}
+
+.notification-enter-active, .notification-leave-active {
+  transition: all 0.4s ease;
+}
+
+.notification-enter-from {
+  opacity: 0;
+  transform: translateX(100px) scale(0.8);
+}
+
+.notification-leave-to {
+  opacity: 0;
+  transform: translateX(100px) scale(0.8);
+}
+
+/* Cart Badge */
+.cart-link {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ff6b35;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
 @media (max-width: 700px) {
   .sidebar-toggle {
     display: block;

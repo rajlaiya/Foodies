@@ -1,293 +1,691 @@
 <template>
-  <section class="alkhol-point">
-    <!-- Section 1: About, Advantages, Disadvantages -->
-    <div class="alkhol-about">
-      <h1>Alkhol Point</h1>
-      <p>
-        Welcome to our Alkhol Point! Here you can explore a wide variety of alcoholic beverages from around the world. Whether you enjoy a classic beer, a glass of wine, or a premium whiskey, we have something for every taste.
-      </p>
-      <div class="adv-disadv">
-        <div class="adv">
-          <h3>Advantages <span class="icon">🍸</span></h3>
-          <ul>
-            <li>Wide selection of drinks</li>
-            <li>Premium quality and authentic taste</li>
-            <li>Perfect for celebrations and socializing</li>
-            <li>Expertly crafted cocktails</li>
-          </ul>
+  <div class="alkhol-page">
+    <!-- Age Verification Modal -->
+    <div v-if="showAgeVerification" class="age-verification-modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Age Verification Required</h2>
+          <span class="warning-icon">🚫</span>
         </div>
-        <div class="disadv">
-          <h3>Disadvantages <span class="icon">⚠️</span></h3>
-          <ul>
-            <li>Excessive consumption is harmful</li>
-            <li>Not suitable for minors</li>
-            <li>May impair judgment and health</li>
-            <li>Legal restrictions apply</li>
-          </ul>
+        <div class="modal-body">
+          <p class="warning-text">
+            <strong>Warning:</strong> Consumption of alcohol is injurious to health.
+          </p>
+          <p class="age-question">
+            Are you 18 years or older?
+          </p>
+          <p class="legal-note">
+            By clicking "Yes", you confirm that you are of legal drinking age in your jurisdiction and understand the health risks associated with alcohol consumption.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button @click="confirmAge" class="confirm-btn">Yes, I am 18+</button>
+          <button @click="denyAge" class="deny-btn">No, I am under 18</button>
         </div>
       </div>
     </div>
 
-    <!-- Section 2: Animated Cards for Drinks -->
-    <div class="alkhol-cards-section">
-      <h2>Our Bestsellers</h2>
-      <div class="alkhol-cards">
-        <div v-for="(drink, idx) in drinks" :key="drink.name" class="alkhol-card animated-card" :style="{ animationDelay: `${idx * 0.15}s` }">
-          <img :src="drink.img" :alt="drink.name" class="drink-img" />
-          <h3>{{ drink.name }}</h3>
-          <p>{{ drink.desc }}</p>
-          <div class="drink-details">
-            <span class="price">Price: ₹{{ drink.price }}</span>
-            <span class="discount" v-if="drink.discount">Discount: {{ drink.discount }}%</span>
-            <span class="available" :class="{ 'not-available': !drink.available }">
-              {{ drink.available ? 'Available' : 'Not Available' }}
-            </span>
+    <!-- Main Content -->
+    <div v-if="!showAgeVerification" class="main-content">
+      <!-- Hero Section -->
+    <section class="alkhol-section">
+      <div class="content-wrapper">
+        <div class="left-section">
+          <img src="https://images.unsplash.com/photo-1551538827-9c037cb4f2a0?w=400&h=300&fit=crop&crop=center" alt="Alcohol" class="alkhol-hero-image" />
+        </div>
+        <div class="right-section">
+          <p class="text-block">
+            Discover our curated collection of premium alcoholic beverages from around the world. From vintage wines to craft spirits, each bottle tells a story of tradition and excellence.
+          </p>
+          <p class="text-block">
+            Our expert sommeliers have selected only the finest drinks for your enjoyment. Whether celebrating special moments or unwinding after a long day, find your perfect companion in our extensive collection.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spacer between sections -->
+    <div class="section-spacer"></div>
+
+    <!-- Shopping Cards Section -->
+    <section class="shopping-section">
+      <div class="container">
+        <h2 class="section-title">Our Premium Collection</h2>
+        <div class="alkhol-grid">
+          <div v-for="drink in drinks" :key="drink.id" class="alkhol-card">
+            <div class="card-image">
+              <img :src="drink.image" :alt="drink.name" />
+            </div>
+            <div class="card-content">
+              <h3 class="drink-name">{{ drink.name }}</h3>
+              <p class="drink-description">{{ drink.desc }}</p>
+              <div class="drink-details">
+                <span class="drink-type">{{ drink.type }}</span>
+                <span class="drink-price">₹{{ drink.price }}</span>
+              </div>
+              <div class="availability-status" :class="{ 'not-available': !drink.available }">
+                {{ drink.available ? 'Available' : 'Out of Stock' }}
+              </div>
+              <button class="add-to-cart-btn" :disabled="!drink.available" @click="addToCart(drink)">
+                {{ drink.available ? 'Add to Cart' : 'Notify Me' }}
+              </button>
+            </div>
           </div>
-          <button class="buy-btn" :disabled="!drink.available">
-            <span class="icon">🛒</span> Buy Now
-          </button>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Section 3: Warning and Random Note -->
-    <div class="alkhol-warning">
-      <div class="warning-note">
-        <span class="icon">🚫</span>
-        <strong>Warning (India):</strong> Consumption of alcohol is injurious to health. Not for sale to persons under the age of 21 years.
-      </div>
-      <div class="random-note">
-        <span class="icon">💡</span>
-        <strong>Did you know?</strong> Moderate consumption of red wine is sometimes linked to heart health, but always drink responsibly!
-      </div>
-    </div>
-  </section>
+    <!-- Warning Section -->
+    <section class="warning-section">
+      <div class="container">
+        <div class="warning-note">
+          <span class="icon">🚫</span>
+          <strong>Warning (India):</strong> Consumption of alcohol is injurious to health. Not for sale to persons under the age of 21 years.
+        </div>
+        <div class="info-note">
+          <span class="icon">💡</span>
+          <strong>Did you know?</strong> Moderate consumption of red wine is sometimes linked to heart health, but always drink responsibly!
+        </div>      </div>
+    </section>
+    </div> <!-- End main-content -->
+  </div> <!-- End alkhol-page -->
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import { cartStore, cartNotification } from '../stores/cart.js';
+
+const showAgeVerification = ref(true);
+
 const drinks = [
-  { name: 'Classic Beer', img: '/src/assets/salad-bowl.png', desc: 'Refreshing lager with a crisp finish.', price: 299, available: true, discount: 10 },
-  { name: 'Red Wine', img: '/src/assets/salad-bowl.png', desc: 'Smooth and fruity red wine.', price: 799, available: false, discount: 0 },
-  { name: 'Whiskey', img: '/src/assets/salad-bowl.png', desc: 'Aged whiskey with rich flavor.', price: 999, available: true, discount: 15 },
-  { name: 'Vodka', img: '/src/assets/salad-bowl.png', desc: 'Crystal clear and smooth.', price: 699, available: true, discount: 5 },
-  { name: 'Rum', img: '/src/assets/salad-bowl.png', desc: 'Sweet and spicy Caribbean favorite.', price: 499, available: false, discount: 0 },
-  { name: 'Gin', img: '/src/assets/salad-bowl.png', desc: 'Botanical and aromatic.', price: 599, available: true, discount: 8 },
-  { name: 'Tequila', img: '/src/assets/salad-bowl.png', desc: 'Bold and festive Mexican spirit.', price: 899, available: true, discount: 12 },
-  { name: 'Champagne', img: '/src/assets/salad-bowl.png', desc: 'Sparkling wine for celebrations.', price: 1299, available: false, discount: 0 },
-  { name: 'Brandy', img: '/src/assets/salad-bowl.png', desc: 'Rich and smooth, perfect for sipping.', price: 899, available: true, discount: 7 },
-  { name: 'Absinthe', img: '/src/assets/salad-bowl.png', desc: 'A strong, herbal spirit with a unique taste.', price: 1099, available: true, discount: 9 },
+  { 
+    id: 1, 
+    name: 'Classic Beer', 
+    image: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Refreshing lager with a crisp finish.', 
+    price: 299, 
+    available: true, 
+    type: 'Beer' 
+  },
+  { 
+    id: 2, 
+    name: 'Red Wine', 
+    image: 'https://images.unsplash.com/photo-1586370434639-0fe43b2d32d6?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Smooth and fruity red wine.', 
+    price: 799, 
+    available: false, 
+    type: 'Wine' 
+  },
+  { 
+    id: 3, 
+    name: 'Whiskey', 
+    image: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Aged whiskey with rich flavor.', 
+    price: 999, 
+    available: true, 
+    type: 'Whiskey' 
+  },
+  { 
+    id: 4, 
+    name: 'Vodka', 
+    image: 'https://images.unsplash.com/photo-1581006852262-e4307cf6283a?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Crystal clear and smooth.', 
+    price: 699, 
+    available: true, 
+    type: 'Vodka' 
+  },
+  { 
+    id: 5, 
+    name: 'Rum', 
+    image: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Sweet and spicy Caribbean favorite.', 
+    price: 499, 
+    available: false, 
+    type: 'Rum' 
+  },
+  { 
+    id: 6, 
+    name: 'Gin', 
+    image: 'https://images.unsplash.com/photo-1551538827-9c037cb4f2a0?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Botanical and aromatic.', 
+    price: 599, 
+    available: true, 
+    type: 'Gin' 
+  },
+  { 
+    id: 7, 
+    name: 'Tequila', 
+    image: 'https://images.unsplash.com/photo-1615332579937-23bbaa4bb05c?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Bold and festive Mexican spirit.', 
+    price: 899, 
+    available: true, 
+    type: 'Tequila' 
+  },
+  { 
+    id: 8, 
+    name: 'Champagne', 
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Sparkling wine for celebrations.', 
+    price: 1299, 
+    available: false, 
+    type: 'Sparkling' 
+  },
+  { 
+    id: 9, 
+    name: 'Brandy', 
+    image: 'https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=300&h=200&fit=crop&crop=center', 
+    desc: 'Rich and smooth, perfect for sipping.', 
+    price: 899, 
+    available: true, 
+    type: 'Brandy' 
+  },
+  { 
+    id: 10, 
+    name: 'Absinthe', 
+    image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=300&h=200&fit=crop&crop=center', 
+    desc: 'A strong, herbal spirit with a unique taste.', 
+    price: 1099, 
+    available: true, 
+    type: 'Absinthe' 
+  },
 ];
+
+const addToCart = (drink) => {
+  if (drink.available) {
+    cartStore.addItem({
+      ...drink,
+      category: 'Alcohol'
+    });
+    cartNotification.showNotification(`${drink.name} added to cart! 🍷`);
+  } else {
+    cartNotification.showNotification(`We'll notify you when ${drink.name} is back in stock! 📩`);
+  }
+};
+
+const confirmAge = () => {
+  showAgeVerification.value = false;
+  sessionStorage.setItem('ageVerifiedAlcohol', 'true');
+  cartNotification.showNotification('Welcome to our premium alcohol collection! 🍷');
+};
+
+const denyAge = () => {
+  cartNotification.showNotification('You must be 18 or older to access this content. 🚫');
+  // Redirect to home page
+  setTimeout(() => {
+    window.location.href = '/about';
+  }, 2000);
+};
+
+onMounted(() => {
+  // Check if user has already verified age in this session (not persistent across browser restarts)
+  const ageVerified = sessionStorage.getItem('ageVerifiedAlcohol');
+  if (ageVerified === 'true') {
+    showAgeVerification.value = false;
+  } else {
+    // Show modal if age not verified
+    showAgeVerification.value = true;
+  }
+});
 </script>
 
 <style scoped>
-.alkhol-point {
-  background: url('@/assets/bg-texture.jpg') no-repeat center center/cover;
-  color: white;
-  min-height: 100vh;
-  padding: 2rem 0 0 0;
-  overflow-x: hidden;
-}
-.alkhol-about {
-  max-width: 900px;
-  margin: 0 auto 2.5rem auto;
-  background: rgba(0,0,0,0.7);
-  border-radius: 18px;
-  padding: 2rem 2rem 1.5rem 2rem;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-}
-.alkhol-about h1 {
-  font-size: 2.5rem;
-  color: #ffe082;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.alkhol-about p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.adv-disadv {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-.adv, .disadv {
-  flex: 1;
-  background: rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 1rem 1.2rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.adv:hover, .disadv:hover {
-  transform: translateY(-8px) scale(1.04) rotate(-1deg);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-}
-.adv h3, .disadv h3 {
-  color: #ffe082;
-  margin-bottom: 0.7rem;
+/* Age Verification Modal */
+.age-verification-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-}
-.adv ul, .disadv ul {
-  margin: 0;
-  padding-left: 1.2rem;
-}
-.adv li, .disadv li {
-  margin-bottom: 0.4rem;
-  font-size: 1.05rem;
-}
-.icon {
-  display: inline-block;
-  animation: icon-bounce 1.2s infinite alternate;
-}
-@keyframes icon-bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-7px) scale(1.15); }
-}
-.alkhol-cards-section {
-  max-width: 1100px;
-  margin: 0 auto 2.5rem auto;
-  text-align: center;
-}
-.alkhol-cards-section h2 {
-  color: #ffe082;
-  margin-bottom: 1.5rem;
-  font-size: 2rem;
-}
-.alkhol-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
   justify-content: center;
-  align-items: flex-start;
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 1100px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
 }
-.alkhol-card {
-  background: rgba(0,0,0,0.7);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-  flex: 1 1 18%;
-  max-width: 200px;
-  min-width: 180px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  color: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+
+.modal-content {
   position: relative;
-  z-index: 2;
-  animation: fadeInUp 0.7s both;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  color: white;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 2px solid #ff6b35;
+  animation: modalSlideIn 0.5s ease-out;
 }
-.alkhol-card:hover {
-  transform: translateY(-10px) scale(1.07) rotate(-2deg);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
-.drink-img {
-  width: 70px;
-  height: 70px;
-  object-fit: contain;
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.modal-header h2 {
+  color: #ff6b35;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.warning-icon {
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.modal-body {
+  margin-bottom: 2rem;
+}
+
+.warning-text {
+  background: rgba(255, 107, 53, 0.1);
+  border: 2px solid #ff6b35;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #ff6b35;
+}
+
+.age-question {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
   margin-bottom: 1rem;
-  animation: floatDrink 2.5s ease-in-out infinite alternate;
+  color: #fff;
 }
-@keyframes floatDrink {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-15px) scale(1.08); }
+
+.legal-note {
+  font-size: 0.9rem;
+  color: #ccc;
+  line-height: 1.5;
+  text-align: center;
 }
-.buy-btn {
-  background: #ffe082;
-  color: #222;
+
+.modal-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.confirm-btn, .deny-btn {
+  padding: 0.8rem 2rem;
   border: none;
   border-radius: 8px;
-  padding: 8px 18px;
-  font-weight: bold;
-  margin-top: 1rem;
-  cursor: pointer;
   font-size: 1rem;
-  transition: background 0.2s, color 0.2s, transform 0.2s;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.confirm-btn {
+  background: linear-gradient(45deg, #4caf50, #45a049);
+  color: white;
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(45deg, #45a049, #3d8b40);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.deny-btn {
+  background: linear-gradient(45deg, #f44336, #d32f2f);
+  color: white;
+}
+
+.deny-btn:hover {
+  background: linear-gradient(45deg, #d32f2f, #c62828);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+}
+
+.alkhol-page {
+  margin: 0;
+  padding: 0;
+}
+
+/* Hero Section */
+.alkhol-section {
+  position: relative;
+  background: linear-gradient(135deg, rgba(75, 0, 130, 0.8) 0%, rgba(139, 0, 139, 0.8) 100%);
+  color: white;
+  height: 80vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  justify-content: center;
+  padding-top: 2rem;
+  backdrop-filter: blur(10px);
 }
-.buy-btn:hover {
-  background: #ffd54f;
-  color: #b8860b;
-  transform: scale(1.08) rotate(-2deg);
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+  padding: 0 1rem;
 }
-.buy-btn:disabled {
+
+.left-section {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alkhol-hero-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.alkhol-hero-image:hover {
+  transform: scale(1.05);
+}
+
+.right-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.text-block {
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  color: #fff;
+  max-width: 90%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-style: italic;
+}
+
+/* Section Spacer */
+.section-spacer {
+  height: 4rem;
+  background: transparent;
+}
+
+/* Shopping Section */
+.shopping-section {
+  backdrop-filter: blur(15px);
+  padding: 3rem 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  color: #ffffff;
+  font-family: 'Impact', sans-serif;
+}
+
+.alkhol-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.alkhol-card {
+  /* background: rgba(255, 255, 255, 0.85); */
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(255, 255, 255);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  height: fit-content;
+}
+
+.alkhol-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(139, 0, 139, 0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.alkhol-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.alkhol-card:hover .drink-name {
+  color: #000000;
+}
+
+.alkhol-card:hover .drink-description {
+  color: #000000;
+}
+
+.alkhol-card:hover .drink-price {
+  color: #fff;
+  background: #4B0082;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.alkhol-card:hover .availability-status {
+  color: #8B008B;
+  font-weight: bolder;
+}
+
+.alkhol-card:hover .availability-status.not-available {
+  color: #ff1744;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.drink-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.drink-description {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+.drink-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.drink-type {
+  background: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.drink-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4B0082;
+}
+
+.availability-status {
+  text-align: center;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.availability-status.not-available {
+  color: #ff5252;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background: linear-gradient(45deg, #8B008B, #4B0082);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background: linear-gradient(45deg, #9932CC, #663399);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(139, 0, 139, 0.3);
+}
+
+.add-to-cart-btn:disabled {
   background: #ccc;
   color: #888;
   cursor: not-allowed;
   transform: none;
 }
-.alkhol-warning {
-  max-width: 900px;
-  margin: 0 auto 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+
+.add-to-cart-btn:active {
+  transform: translateY(0);
 }
-.warning-note, .random-note {
-  background: rgba(255,255,255,0.12);
-  border-radius: 10px;
+
+/* Warning Section */
+.warning-section {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 2rem 0;
+}
+
+.warning-note, .info-note {
+  background: rgba(255, 235, 59, 0.1);
+  border: 2px solid #FFC107;
+  border-radius: 12px;
   padding: 1rem 1.5rem;
-  color: #ffe082;
-  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #333;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  animation: fadeInUp 0.7s both;
 }
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+
+.info-note {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: #2196F3;
 }
-.drink-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  margin: 0.5rem 0 0.7rem 0;
-  font-size: 1.05rem;
-  align-items: center;
+
+.icon {
+  font-size: 1.2rem;
 }
-.price {
-  color: #ffe082;
-  font-weight: bold;
-}
-.discount {
-  color: #4caf50;
-  font-weight: bold;
-}
-.available {
-  color: #4caf50;
-  font-weight: bold;
-}
-.not-available {
-  color: #ff5252;
-  text-decoration: line-through;
-}
-@media (max-width: 1200px) {
-  .alkhol-card {
-    flex-basis: 22%;
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .alkhol-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 }
-@media (max-width: 900px) {
-  .alkhol-card {
-    flex-basis: 30%;
+
+@media (max-width: 768px) {
+  .alkhol-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-}
-@media (max-width: 700px) {
-  .alkhol-card {
-    flex-basis: 45%;
+  
+  .container {
+    padding: 0 0.5rem;
   }
-}
-@media (max-width: 500px) {
-  .alkhol-card {
-    flex-basis: 90%;
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .content-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .alkhol-hero-image {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .text-block {
+    font-size: 16px;
+  }
+  
+  .alkhol-section {
+    height: 70vh;
+    padding-top: 1rem;
   }
 }
 </style>

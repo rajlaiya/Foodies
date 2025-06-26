@@ -1,115 +1,461 @@
 <template>
-  <section class="section-content meal-page">
-    <div class="meal-section" v-for="section in mealSections" :key="section.name">
-      <h2 class="section-title">{{ section.name }}</h2>
-      <div class="card-row">
-        <div v-for="(dish, idx) in section.dishes" :key="dish.title" class="dish-card animated-card" :style="{ animationDelay: `${idx * 0.2}s` }">
-          <img :src="dish.img" :alt="dish.title" class="dish-img" />
-          <h3>{{ dish.title }}</h3>
-          <p>{{ dish.desc }}</p>
+  <div class="meal-page">
+    <!-- Hero Section -->
+    <section class="meal-section">
+      <div class="content-wrapper">
+        <div class="left-section">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop&crop=center" alt="Traditional Meals" class="meal-hero-image" />
+        </div>
+        <div class="right-section">
+          <p class="text-block">
+            Discover the rich heritage of Indian cuisine with our authentic regional specialties. From the vibrant flavors of Gujarat to the bold spices of Punjab, each dish tells a story of tradition and culture.
+          </p>
+          <p class="text-block">
+            Our expert chefs prepare every meal using traditional recipes passed down through generations, ensuring you experience the true essence of Indian culinary artistry with every bite.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Spacer between sections -->
+    <div class="section-spacer"></div>
+
+    <!-- Shopping Cards Section -->
+    <section class="shopping-section">
+      <div class="container">
+        <h2 class="section-title">Our Traditional Meal Collection</h2>
+        <div class="meal-grid">
+          <div v-for="meal in mealMenu" :key="meal.id" class="meal-card">
+            <div class="card-image">
+              <img :src="meal.image" :alt="meal.name" />
+            </div>
+            <div class="card-content">
+              <h3 class="meal-name">{{ meal.name }}</h3>
+              <p class="meal-description">{{ meal.description }}</p>
+              <div class="meal-details">
+                <span class="meal-cuisine">{{ meal.cuisine }}</span>
+                <span class="meal-price">${{ meal.price }}</span>
+              </div>
+              <button class="add-to-cart-btn" @click="addToCart(meal)">
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script setup>
-const mealSections = [
+import { cartStore, cartNotification } from '../stores/cart.js'
+
+const mealMenu = [
+  // Gujarati Dishes
   {
-    name: 'Gujarati Dishes',
-    dishes: [
-      { title: 'Dhokla', img: '/src/assets/gujarati1.png', desc: 'Soft, spongy steamed snack.' },
-      { title: 'Undhiyu', img: '/src/assets/gujarati2.png', desc: 'Mixed vegetable curry.' },
-      { title: 'Khandvi', img: '/src/assets/gujarati3.png', desc: 'Gram flour rolls with spices.' },
-      { title: 'Thepla', img: '/src/assets/gujarati4.png', desc: 'Spiced flatbread, perfect for travel.' },
-    ],
+    id: 1,
+    name: "Dhokla Delight",
+    description: "Soft, spongy steamed snack made from fermented rice and chickpea batter",
+    cuisine: "Gujarati",
+    price: 6.99,
+    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=300&h=200&fit=crop&crop=center"
   },
   {
-    name: 'Marathi Dishes',
-    dishes: [
-      { title: 'Puran Poli', img: '/src/assets/marathi1.png', desc: 'Sweet stuffed flatbread.' },
-      { title: 'Misal Pav', img: '/src/assets/marathi2.png', desc: 'Spicy sprouted curry with bread.' },
-      { title: 'Vada Pav', img: '/src/assets/marathi3.png', desc: 'Potato fritter in a bun.' },
-      { title: 'Sabudana Khichdi', img: '/src/assets/marathi4.png', desc: 'Sago pearls with peanuts and spices.' },
-    ],
+    id: 2,
+    name: "Undhiyu Special",
+    description: "Traditional mixed vegetable curry cooked with aromatic spices and herbs",
+    cuisine: "Gujarati",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop&crop=center"
   },
   {
-    name: 'Southindian Dishes',
-    dishes: [
-      { title: 'Dosa', img: '/src/assets/south1.png', desc: 'Crispy rice pancake.' },
-      { title: 'Idli', img: '/src/assets/south2.png', desc: 'Steamed rice cakes.' },
-      { title: 'Sambar', img: '/src/assets/south3.png', desc: 'Lentil-based vegetable stew.' },
-      { title: 'Uttapam', img: '/src/assets/south4.png', desc: 'Thick pancake with toppings.' },
-    ],
+    id: 3,
+    name: "Khandvi Rolls",
+    description: "Delicate gram flour rolls seasoned with mustard seeds and curry leaves",
+    cuisine: "Gujarati",
+    price: 8.99,
+    image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop&crop=center"
   },
   {
-    name: 'Panjabi Dishes',
-    dishes: [
-      { title: 'Butter Chicken', img: '/src/assets/panjabi1.png', desc: 'Creamy tomato chicken curry.' },
-      { title: 'Chole Bhature', img: '/src/assets/panjabi2.png', desc: 'Spicy chickpeas with fried bread.' },
-      { title: 'Paneer Tikka', img: '/src/assets/panjabi3.png', desc: 'Grilled cottage cheese skewers.' },
-      { title: 'Sarson da Saag', img: '/src/assets/panjabi4.png', desc: 'Mustard greens curry.' },
-    ],
+    id: 4,
+    name: "Thepla Combo",
+    description: "Spiced flatbread perfect for travel, served with pickles and yogurt",
+    cuisine: "Gujarati",
+    price: 7.99,
+    image: "https://images.unsplash.com/photo-1586370434639-0fe43b2d32d6?w=300&h=200&fit=crop&crop=center"
   },
+  
+  // Marathi Dishes
+  {
+    id: 5,
+    name: "Puran Poli",
+    description: "Sweet stuffed flatbread filled with jaggery and lentil mixture",
+    cuisine: "Marathi",
+    price: 9.99,
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 6,
+    name: "Misal Pav",
+    description: "Spicy sprouted curry served with bread rolls and traditional toppings",
+    cuisine: "Marathi",
+    price: 8.99,
+    image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 7,
+    name: "Vada Pav",
+    description: "Mumbai's favorite street food - potato fritter in a soft bun",
+    cuisine: "Marathi",
+    price: 5.99,
+    image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 8,
+    name: "Sabudana Khichdi",
+    description: "Sago pearls cooked with peanuts, potatoes, and aromatic spices",
+    cuisine: "Marathi",
+    price: 7.99,
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop&crop=center"
+  },
+  
+  // South Indian Dishes
+  {
+    id: 9,
+    name: "Masala Dosa",
+    description: "Crispy rice pancake filled with spiced potato curry and served with chutney",
+    cuisine: "South Indian",
+    price: 9.99,
+    image: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 10,
+    name: "Idli Sambar",
+    description: "Steamed rice cakes served with lentil curry and coconut chutney",
+    cuisine: "South Indian",
+    price: 8.99,
+    image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 11,
+    name: "Uttapam Special",
+    description: "Thick pancake topped with vegetables and served with traditional sides",
+    cuisine: "South Indian",
+    price: 10.99,
+    image: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 12,
+    name: "Filter Coffee",
+    description: "Authentic South Indian filter coffee served in traditional style",
+    cuisine: "South Indian",
+    price: 4.99,
+    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop&crop=center"  },
+  
+  // Punjabi Dishes
+  {
+    id: 13,
+    name: "Butter Paneer",
+    description: "Creamy tomato-based paneer curry with aromatic spices and herbs",
+    cuisine: "Punjabi",
+    price: 14.99,
+    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 14,
+    name: "Chole Bhature",
+    description: "Spicy chickpea curry served with fluffy deep-fried bread",
+    cuisine: "Punjabi",
+    price: 11.99,
+    image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 15,
+    name: "Paneer Tikka",
+    description: "Grilled cottage cheese skewers marinated in yogurt and spices",
+    cuisine: "Punjabi",
+    price: 12.99,
+    image: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop&crop=center"
+  },
+  {
+    id: 16,
+    name: "Sarson da Saag",
+    description: "Traditional mustard greens curry served with makki di roti",
+    cuisine: "Punjabi",
+    price: 10.99,
+    image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop&crop=center"
+  }
 ];
+
+const addToCart = (meal) => {
+  cartStore.addItem({
+    ...meal,
+    category: 'Traditional Meals'
+  });
+  cartNotification.showNotification(`${meal.name} added to cart! 🍛`);
+};
 </script>
 
 <style scoped>
-.section-content.meal-page {
-  background: url('@/assets/bg-texture.jpg') no-repeat center center/cover;
-  color: white;
-  min-height: 100vh;
-  padding: 2rem 0;
+.meal-page {
+  margin: 0;
+  padding: 0;
 }
+
+/* Hero Section */
 .meal-section {
-  margin-bottom: 3rem;
-}
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: #ffe082;
-  text-shadow: 1px 1px 8px #000;
-}
-.card-row {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 152, 0, 0.8) 0%, rgba(255, 87, 34, 0.8) 100%);
+  color: white;
+  height: 80vh;
+  overflow: hidden;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.left-section {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meal-hero-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.meal-hero-image:hover {
+  transform: scale(1.05);
+}
+
+.right-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap;
 }
-.dish-card {
-  background: rgba(0,0,0,0.7);
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
-  width: 220px;
-  padding: 1.5rem 1rem;
-  text-align: center;
+
+.text-block {
+  font-size: 18px;
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
   color: #fff;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-  position: relative;
-  z-index: 2;
+  max-width: 90%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-style: italic;
 }
-.dish-card:hover {
-  transform: translateY(-10px) scale(1.05) rotate(-2deg);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+
+/* Section Spacer */
+.section-spacer {
+  height: 4rem;
+  background: transparent;
 }
-.dish-img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
+
+/* Shopping Section */
+.shopping-section {
+  backdrop-filter: blur(15px);
+  padding: 3rem 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+  color: #ff5722;
+  font-family: 'Impact', sans-serif;
+}
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.5rem;
+  padding: 0;
+}
+
+.meal-card {
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgb(255, 255, 255);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  height: fit-content;
+}
+
+.meal-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 87, 34, 0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.meal-card:hover .meal-name {
+  color: #ff5722;
+}
+
+.meal-card:hover .meal-description {
+  color: #333;
+}
+
+.meal-card:hover .meal-price {
+  color: #fff;
+  background: #ff5722;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.meal-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.meal-description {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
   margin-bottom: 1rem;
-  animation: floatDish 2.5s ease-in-out infinite alternate;
 }
-@keyframes floatDish {
-  0% { transform: translateY(0) scale(1); }
-  100% { transform: translateY(-18px) scale(1.08); }
+
+.meal-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
-.animated-card {
-  animation: fadeInUp 0.7s both;
+
+.meal-cuisine {
+  background: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #666;
 }
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+
+.meal-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff5722;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background: linear-gradient(45deg, #ff5722, #ff7043);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background: linear-gradient(45deg, #e64a19, #f4511e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 87, 34, 0.3);
+}
+
+.add-to-cart-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .meal-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .meal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .meal-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .content-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .meal-hero-image {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .text-block {
+    font-size: 16px;
+  }
+  
+  .meal-section {
+    height: 70vh;
+    padding-top: 1rem;
+  }
 }
 </style>
