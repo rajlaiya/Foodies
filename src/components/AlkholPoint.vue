@@ -379,8 +379,6 @@ onMounted(() => {
 
 /* Hero Section */
 .alkhol-section {
-  position: relative;
-  background: linear-gradient(135deg, rgba(75, 0, 130, 0.8) 0%, rgba(139, 0, 139, 0.8) 100%);
   color: white;
   height: 80vh;
   overflow: hidden;

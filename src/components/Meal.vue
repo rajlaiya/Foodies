@@ -204,8 +204,6 @@ const addToCart = (meal) => {
 
 /* Hero Section */
 .meal-section {
-  position: relative;
-  background: linear-gradient(135deg, rgba(255, 152, 0, 0.8) 0%, rgba(255, 87, 34, 0.8) 100%);
   color: white;
   height: 80vh;
   overflow: hidden;
