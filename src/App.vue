@@ -196,6 +196,20 @@ header {
   backdrop-filter: blur(10px);
 }
 
+@media (max-width: 768px) {
+  .global-notification {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    max-width: 80vw;
+    font-size: 3vmin;
+    padding: 3vmin 4vmin;
+    border-radius: 3vmin;
+    text-align: center;
+  }
+}
+
 .notification-enter-active, .notification-leave-active {
   transition: all 0.4s ease;
 }

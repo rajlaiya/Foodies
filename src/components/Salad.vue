@@ -366,7 +366,7 @@ const addToCart = (salad: any) => {
 
 @media (max-width: 768px) {
   .salad-section {
-    padding: 1rem 0.75rem;
+    padding: 1rem 0;
     min-height: 100vh;
   }
   
@@ -377,7 +377,7 @@ const addToCart = (salad: any) => {
   
   .content-wrapper {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0;
     text-align: center;
   }
@@ -387,15 +387,15 @@ const addToCart = (salad: any) => {
   }
   
   .section-title {
-    font-size: 2.2rem;
+    font-size: 4vmax;
     margin-bottom: 1rem;
     line-height: 1.2;
   }
   
   .text-block {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 3vmin;
+    line-height: 1.5;
+    margin-bottom: 1rem;
     max-width: 100%;
   }
   
@@ -407,97 +407,119 @@ const addToCart = (salad: any) => {
   }
   
   .salad-hero-image {
-    width: 180px;
-    height: 180px;
+    width: 15vmax;
+    height: 15vmax;
   }
   
   .salad-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5vmin;
     max-width: 100%;
     margin: 0 auto;
+    padding: 0;
   }
   
   .salad-card {
-    padding: 1.25rem;
+    padding: 0.5vmin;
     max-width: 100%;
   }
   
-  .salad-image {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
+  .card-image {
+    height: 15vmax;
+  }
+  
+  .card-content {
+    padding: 1.5vmin;
   }
   
   .salad-name {
-    font-size: 1.2rem;
+    font-size: 3vmin;
     margin-bottom: 0.5rem;
   }
   
   .salad-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 1rem;
+    font-size: 2.5vmin;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
   }
   
-  .salad-meta {
+  .salad-details {
     margin-bottom: 1rem;
   }
   
   .salad-price {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
+    font-size: 3vmin;
   }
   
-  .salad-type, .salad-size {
-    font-size: 0.8rem;
+  .salad-size {
+    font-size: 2vmin;
   }
   
   .add-to-cart-btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 1vmin 2vmin;
+    font-size: 2.5vmin;
   }
 }
 
 @media (max-width: 480px) {
   .salad-section {
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 0;
+  }
+  
+  .container {
+    padding: 0;
   }
   
   .section-title {
-    font-size: 1.8rem;
+    font-size: 5vmax;
     line-height: 1.3;
   }
   
   .text-block {
-    font-size: 0.9rem;
+    font-size: 3.5vmin;
   }
   
   .salad-hero-image {
-    width: 150px;
-    height: 150px;
+    width: 18vmax;
+    height: 18vmax;
+  }
+  
+  .salad-grid {
+    gap: 0.25vmin;
+    padding: 0;
   }
   
   .salad-card {
-    padding: 1rem;
+    padding: 0.5vmin;
   }
   
-  .salad-image {
-    width: 70px;
-    height: 70px;
+  .card-image {
+    height: 18vmax;
+  }
+  
+  .card-content {
+    padding: 1vmin;
   }
   
   .salad-name {
-    font-size: 1.1rem;
+    font-size: 3.5vmin;
   }
   
   .salad-description {
-    font-size: 0.8rem;
+    font-size: 2.8vmin;
+  }
+  
+  .salad-price {
+    font-size: 3.5vmin;
+  }
+  
+  .salad-size {
+    font-size: 2.5vmin;
   }
   
   .add-to-cart-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    padding: 1vmin 1.5vmin;
+    font-size: 3vmin;
   }
 }
 </style>

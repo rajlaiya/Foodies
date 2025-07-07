@@ -361,7 +361,7 @@ const addToCart = (item) => {
 
 @media (max-width: 768px) {
   .breakfast-section {
-    padding: 1rem 0.75rem;
+    padding: 1rem 0;
     min-height: 100vh;
   }
   
@@ -372,7 +372,7 @@ const addToCart = (item) => {
   
   .content-wrapper {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0;
     text-align: center;
   }
@@ -382,15 +382,15 @@ const addToCart = (item) => {
   }
   
   .section-title {
-    font-size: 2.2rem;
+    font-size: 4vmax;
     margin-bottom: 1rem;
     line-height: 1.2;
   }
   
   .text-block {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 3vmin;
+    line-height: 1.5;
+    margin-bottom: 1rem;
     max-width: 100%;
   }
   
@@ -402,97 +402,119 @@ const addToCart = (item) => {
   }
   
   .breakfast-hero-image {
-    width: 180px;
-    height: 180px;
+    width: 15vmax;
+    height: 15vmax;
   }
   
   .breakfast-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5vmin;
     max-width: 100%;
     margin: 0 auto;
+    padding: 0;
   }
   
   .breakfast-card {
-    padding: 1.25rem;
+    padding: 0.5vmin;
     max-width: 100%;
   }
   
-  .breakfast-image {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
+  .card-image {
+    height: 15vmax;
   }
   
-  .breakfast-name {
-    font-size: 1.2rem;
+  .card-content {
+    padding: 1.5vmin;
+  }
+  
+  .item-name {
+    font-size: 3vmin;
     margin-bottom: 0.5rem;
   }
   
-  .breakfast-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
+  .item-description {
+    font-size: 2.5vmin;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  
+  .item-details {
     margin-bottom: 1rem;
   }
   
-  .breakfast-meta {
-    margin-bottom: 1rem;
+  .item-price {
+    font-size: 3vmin;
   }
   
-  .breakfast-price {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .breakfast-type, .breakfast-cuisine {
-    font-size: 0.8rem;
+  .item-type {
+    font-size: 2vmin;
   }
   
   .add-to-cart-btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 1vmin 2vmin;
+    font-size: 2.5vmin;
   }
 }
 
 @media (max-width: 480px) {
   .breakfast-section {
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 0;
+  }
+  
+  .container {
+    padding: 0;
   }
   
   .section-title {
-    font-size: 1.8rem;
+    font-size: 5vmax;
     line-height: 1.3;
   }
   
   .text-block {
-    font-size: 0.9rem;
+    font-size: 3.5vmin;
   }
   
   .breakfast-hero-image {
-    width: 150px;
-    height: 150px;
+    width: 18vmax;
+    height: 18vmax;
+  }
+  
+  .breakfast-grid {
+    gap: 0.25vmin;
+    padding: 0;
   }
   
   .breakfast-card {
-    padding: 1rem;
+    padding: 0.5vmin;
   }
   
-  .breakfast-image {
-    width: 70px;
-    height: 70px;
+  .card-image {
+    height: 18vmax;
   }
   
-  .breakfast-name {
-    font-size: 1.1rem;
+  .card-content {
+    padding: 1vmin;
   }
   
-  .breakfast-description {
-    font-size: 0.8rem;
+  .item-name {
+    font-size: 3.5vmin;
+  }
+  
+  .item-description {
+    font-size: 2.8vmin;
+  }
+  
+  .item-price {
+    font-size: 3.5vmin;
+  }
+  
+  .item-type {
+    font-size: 2.5vmin;
   }
   
   .add-to-cart-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    padding: 1vmin 1.5vmin;
+    font-size: 3vmin;
   }
 }
 </style>

@@ -357,7 +357,7 @@ const addToCart = (pizza) => {
 
 @media (max-width: 768px) {
   .pizza-section {
-    padding: 1rem 0.75rem;
+    padding: 1rem 0;
     min-height: 100vh;
   }
   
@@ -368,7 +368,7 @@ const addToCart = (pizza) => {
   
   .content-wrapper {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
     padding: 0;
     text-align: center;
   }
@@ -378,117 +378,207 @@ const addToCart = (pizza) => {
   }
   
   .section-title {
-    font-size: 2.2rem;
+    font-size: 4.5vmax;
     margin-bottom: 1rem;
     line-height: 1.2;
   }
   
   .text-block {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    font-size: 2.8vmin;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
     max-width: 100%;
+    padding: 0;
   }
   
   .right-section {
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 1rem;
   }
   
   .pizza-hero-image {
-    width: 180px;
-    height: 180px;
+    width: 20vmax;
+    height: 20vmax;
+    min-width: 100px;
+    min-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
   }
   
   .pizza-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5vmin;
     max-width: 100%;
     margin: 0 auto;
+    padding: 0;
   }
   
   .pizza-card {
-    padding: 1.25rem;
+    padding: 1vmin;
     max-width: 100%;
+    border-radius: 2vmin;
   }
   
-  .pizza-image {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
+  .card-image {
+    height: 25vmin;
+    min-height: 120px;
+    max-height: 180px;
+  }
+  
+  .card-content {
+    padding: 2vmin;
   }
   
   .pizza-name {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 3vmin;
+    margin-bottom: 1vmin;
+    line-height: 1.2;
   }
   
   .pizza-description {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    margin-bottom: 1rem;
+    font-size: 2.2vmin;
+    line-height: 1.3;
+    margin-bottom: 2vmin;
   }
   
-  .pizza-meta {
-    margin-bottom: 1rem;
+  .pizza-details {
+    margin-bottom: 2vmin;
+    flex-direction: column;
+    gap: 1vmin;
+    align-items: center;
+  }
+  
+  .pizza-size {
+    font-size: 2vmin;
+    padding: 1vmin 2vmin;
   }
   
   .pizza-price {
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-  
-  .pizza-type, .pizza-size {
-    font-size: 0.8rem;
+    font-size: 3.5vmin;
+    margin: 0;
   }
   
   .add-to-cart-btn {
-    padding: 0.7rem 1.2rem;
-    font-size: 0.9rem;
+    padding: 2.5vmin 3vmin;
+    font-size: 2.5vmin;
+    border-radius: 1.5vmin;
+    margin: 0 auto;
+    display: block;
+    width: 90%;
   }
 }
 
 @media (max-width: 480px) {
   .pizza-section {
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 0.15rem;
+  }
+  
+  .container {
+    padding: 0 0.15rem;
+  }
+  
+  .content-wrapper {
+    padding: 0 0.15rem;
   }
   
   .section-title {
-    font-size: 1.8rem;
-    line-height: 1.3;
+    font-size: 5.5vmax;
+    line-height: 1.1;
   }
   
   .text-block {
-    font-size: 0.9rem;
+    font-size: 3.2vmin;
+    padding: 0;
   }
   
   .pizza-hero-image {
-    width: 150px;
-    height: 150px;
+    width: 22vmax;
+    height: 22vmax;
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 130px;
+    max-height: 130px;
+  }
+  
+  .pizza-grid {
+    gap: 0.25vmin;
+    padding: 0;
   }
   
   .pizza-card {
-    padding: 1rem;
+    padding: 1vmin;
+    border-radius: 1.8vmin;
   }
   
-  .pizza-image {
-    width: 70px;
-    height: 70px;
+  .card-image {
+    height: 22vmin;
+    min-height: 100px;
+    max-height: 160px;
+  }
+  
+  .card-content {
+    padding: 1.8vmin;
   }
   
   .pizza-name {
-    font-size: 1.1rem;
+    font-size: 3.2vmin;
+    margin-bottom: 0.8vmin;
   }
   
   .pizza-description {
-    font-size: 0.8rem;
+    font-size: 2.4vmin;
+    margin-bottom: 1.8vmin;
+  }
+  
+  .pizza-size {
+    font-size: 2.2vmin;
+    padding: 0.8vmin 1.8vmin;
+  }
+  
+  .pizza-price {
+    font-size: 3.8vmin;
   }
   
   .add-to-cart-btn {
-    padding: 0.6rem 1rem;
-    font-size: 0.85rem;
+    padding: 2.2vmin 2.8vmin;
+    font-size: 2.8vmin;
+    border-radius: 1.3vmin;
+    width: 95%;
+  }
+}
+
+@media (max-width: 360px) {
+  .pizza-section {
+    padding: 0.5rem 0.1rem;
+  }
+  
+  .container {
+    padding: 0 0.1rem;
+  }
+  
+  .content-wrapper {
+    padding: 0 0.1rem;
+  }
+  
+  .pizza-grid {
+    gap: 0.6vmin;
+    padding: 0 0.1rem;
+  }
+  
+  .pizza-card {
+    padding: 1.5vmin;
+  }
+  
+  .card-content {
+    padding: 1.5vmin;
+  }
+  
+  .add-to-cart-btn {
+    width: 98%;
+    font-size: 3vmin;
   }
 }
 </style>
