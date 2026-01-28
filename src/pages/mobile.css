@@ -1,4 +1,4 @@
-/* Mobile responsive styles for AlkholPoint.vue and similar card layouts */
+/* Mobile responsive styles - Dark Theme Restaurant Style */
 @media (max-width: 700px) {
   html, body, #app {
     width: 100%;
@@ -6,16 +6,115 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background: linear-gradient(180deg, #1a1520 0%, #0d0a12 100%) !important;
   }
 
+  /* Hide hero sections and paragraphs on mobile for menu pages (NOT about section) */
+  .pizza-section,
+  .burger-section,
+  .meal-section,
+  .salad-section,
+  .fruit-section,
+  .colddrinks-section,
+  .breakfast-section,
+  .alkhol-header,
+  .alkhol-about,
+  .alkhol-warning,
+  .section-spacer,
+  .pizza-section .content-wrapper,
+  .burger-section .content-wrapper,
+  .meal-section .content-wrapper,
+  .salad-section .content-wrapper,
+  .fruit-section .content-wrapper,
+  .colddrinks-section .content-wrapper,
+  .breakfast-section .content-wrapper,
+  .pizza-page .content-wrapper,
+  .burger-page .content-wrapper,
+  .meal-page .content-wrapper,
+  .salad-page .content-wrapper,
+  .fruit-page .content-wrapper,
+  .colddrinks-page .content-wrapper,
+  .breakfast-page .content-wrapper,
+  .pizza-hero-image,
+  .burger-hero-image,
+  .meal-hero-image,
+  .salad-hero-image,
+  .fruit-hero-image,
+  .colddrinks-hero-image,
+  .breakfast-hero-image {
+    display: none !important;
+  }
+
+  /* About section - keep visible and style for mobile */
+  .about-section {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    padding: 1rem !important;
+  }
+
+  .about-section .content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    padding: 1rem !important;
+  }
+
+  .about-section .left-section,
+  .about-section .right-section {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .about-section .text-block {
+    display: block !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .about-section .title {
+    font-size: 1.5rem !important;
+  }
+
+  /* Main container styling */
   .main-content,
-  .container {
+  .container,
+  .shopping-section {
     width: 100% !important;
     max-width: 100% !important;
-    padding: 0.75rem 0.75rem !important;
+    padding: 0.5rem !important;
     box-sizing: border-box;
+    background: transparent !important;
   }
 
+  /* Page backgrounds */
+  .pizza-page,
+  .burger-page,
+  .meal-page,
+  .salad-page,
+  .fruit-page,
+  .colddrinks-page,
+  .breakfast-page,
+  .alkhol-point {
+    background: linear-gradient(180deg, #1a1520 0%, #0d0a12 100%) !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+  }
+
+  /* Section title styling */
+  .section-title {
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem 0.5rem !important;
+    text-align: center !important;
+  }
+
+  /* Grid layout - single column full width */
   .pizza-grid,
   .burger-grid,
   .meal-grid,
@@ -24,13 +123,15 @@
   .colddrinks-grid,
   .breakfast-grid,
   .alkhol-cards {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
-    gap: 1.1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
     width: 100% !important;
-    margin: 0 auto !important;
-    padding: 0.5rem 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
+  /* Card styling - Full width rectangular vertical cards */
   .pizza-card,
   .burger-card,
   .meal-card,
@@ -39,13 +140,20 @@
   .colddrinks-card,
   .breakfast-card,
   .alkhol-card {
+    display: flex !important;
+    flex-direction: column !important;
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: 18px !important;
-    box-shadow: 0 10px 26px rgba(0,0,0,0.35) !important;
-    background: linear-gradient(160deg, #1a1623 0%, #121019 50%, #1d1626 100%) !important;
+    border-radius: 16px !important;
+    background: rgba(30, 25, 40, 0.9) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+    padding: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden !important;
+    margin: 0 !important;
   }
 
+  /* Card image - Full width rectangular */
   .pizza-card .card-image,
   .burger-card .card-image,
   .meal-card .card-image,
@@ -54,9 +162,45 @@
   .colddrinks-card .card-image,
   .breakfast-card .card-image,
   .alkhol-card .card-image {
-    height: 170px !important;
+    width: 100% !important;
+    height: 180px !important;
+    min-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    overflow: hidden !important;
   }
 
+  .pizza-card .card-image img,
+  .burger-card .card-image img,
+  .meal-card .card-image img,
+  .salad-card .card-image img,
+  .fruit-card .card-image img,
+  .colddrinks-card .card-image img,
+  .breakfast-card .card-image img,
+  .alkhol-card .card-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+  }
+
+  /* Card content */
+  .pizza-card .card-content,
+  .burger-card .card-content,
+  .meal-card .card-content,
+  .salad-card .card-content,
+  .fruit-card .card-content,
+  .colddrinks-card .card-content,
+  .breakfast-card .card-content,
+  .alkhol-card .card-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    padding: 1rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Item name */
   .pizza-card h3,
   .burger-card h3,
   .meal-card h3,
@@ -64,10 +208,22 @@
   .fruit-card h3,
   .colddrinks-card h3,
   .breakfast-card h3,
-  .alkhol-card h3 {
-    font-size: 1rem !important;
+  .alkhol-card h3,
+  .pizza-name,
+  .burger-name,
+  .meal-name,
+  .salad-name,
+  .fruit-name,
+  .colddrinks-name,
+  .breakfast-name {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
   }
 
+  /* Description - show short description */
   .pizza-card p,
   .burger-card p,
   .meal-card p,
@@ -75,11 +231,79 @@
   .fruit-card p,
   .colddrinks-card p,
   .breakfast-card p,
-  .alkhol-card p {
-    font-size: 0.9rem !important;
-    line-height: 1.35 !important;
+  .alkhol-card p,
+  .pizza-description,
+  .burger-description,
+  .meal-description,
+  .salad-description,
+  .fruit-description,
+  .colddrinks-description,
+  .breakfast-description {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    font-size: 0.85rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
   }
 
+  /* Details row (size/cuisine and price) */
+  .pizza-details,
+  .burger-details,
+  .meal-details,
+  .salad-details,
+  .fruit-details,
+  .colddrinks-details,
+  .breakfast-details {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+  }
+
+  /* Size/cuisine badge */
+  .pizza-size,
+  .burger-size,
+  .meal-cuisine,
+  .salad-size,
+  .fruit-size,
+  .colddrinks-size,
+  .breakfast-size {
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    padding: 0.25rem 0.6rem !important;
+    border-radius: 8px !important;
+  }
+
+  /* Price */
+  .pizza-price,
+  .burger-price,
+  .meal-price,
+  .salad-price,
+  .fruit-price,
+  .colddrinks-price,
+  .breakfast-price {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #f5a623 !important;
+  }
+
+  /* Remove star rating pseudo element */
+  .pizza-details::before,
+  .burger-details::before,
+  .meal-details::before,
+  .salad-details::before,
+  .fruit-details::before,
+  .colddrinks-details::before,
+  .breakfast-details::before {
+    content: none !important;
+  }
+
+  /* Add to cart button - full width */
   .pizza-card .add-to-cart-btn,
   .burger-card .add-to-cart-btn,
   .meal-card .add-to-cart-btn,
@@ -88,133 +312,117 @@
   .colddrinks-card .add-to-cart-btn,
   .breakfast-card .add-to-cart-btn,
   .alkhol-card .add-to-cart-btn {
-    font-size: 0.95rem !important;
-    padding: 0.75rem !important;
-    border-radius: 12px !important;
+    font-size: 0.9rem !important;
+    padding: 0.75rem 1rem !important;
+    border-radius: 10px !important;
+    background: linear-gradient(135deg, #f5a623 0%, #e6951e 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    font-weight: 600 !important;
+    margin-top: 0.75rem !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-align: center !important;
   }
 
+  .pizza-card .add-to-cart-btn:hover,
+  .burger-card .add-to-cart-btn:hover,
+  .meal-card .add-to-cart-btn:hover,
+  .salad-card .add-to-cart-btn:hover,
+  .fruit-card .add-to-cart-btn:hover,
+  .colddrinks-card .add-to-cart-btn:hover,
+  .breakfast-card .add-to-cart-btn:hover,
+  .alkhol-card .add-to-cart-btn:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.4) !important;
+  }
+
+  /* Alcohol specific styles */
   .alkhol-point {
-    padding: 0.5rem 0 0 0;
+    padding: 0.5rem !important;
   }
-  .alkhol-about, .alkhol-cards-section, .alkhol-warning {
-    padding: 1rem 0.5rem;
-    border-radius: 10px;
+
+  .alkhol-cards-section {
+    padding: 0.5rem !important;
+    background: transparent !important;
   }
-  .alkhol-cards {
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 100vw;
-  }
-  .alkhol-card {
-    flex-basis: 90vw !important;
-    max-width: 95vw !important;
-    min-width: 0 !important;
-    margin: 0 auto;
-    padding: 1rem 0.5rem;
-  }
-  .alkhol-header h1, .alkhol-cards-section h2, .section-title {
-    font-size: 1.3rem !important;
-  }
-  .drink-img {
-    width: 60px !important;
-    height: 60px !important;
-  }
-  .adv-disadv {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .alkhol-warning {
-    flex-direction: column;
-    gap: 0.7rem;
-  }
-  .warning-note, .random-note {
-    font-size: 0.98rem;
-    padding: 0.7rem 0.7rem;
-  }
-  .about-section {
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 0.5rem 0.2rem !important;
-    min-height: 100vh !important;
-    width: 100vw !important;
-    height: auto !important;
-    overflow: hidden !important;
-  }
-  .content-wrapper {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    padding: 1rem 0.5rem !important;
-    width: 100% !important;
-    align-items: center !important;
-  }
-  .left-section, .right-section {
-    width: 100% !important;
+
+  .alkhol-cards-section h2 {
+    color: #fff !important;
+    font-size: 1.4rem !important;
+    margin-bottom: 1rem !important;
     text-align: center !important;
-    padding: 0 !important;
-    align-items: center !important;
+  }
+
+  .alkhol-cards {
     display: flex !important;
     flex-direction: column !important;
+    gap: 0.75rem !important;
   }
-  .title {
-    font-size: 1.3rem !important;
-    margin-bottom: 0.7rem !important;
+
+  .alkhol-card {
+    flex-basis: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
   }
-  .text-block {
-    font-size: 1rem !important;
-    line-height: 1.5 !important;
-    margin-bottom: 0.5rem !important;
-    text-align: center !important;
+
+  .drink-img {
     width: 100% !important;
-    display: block !important;
+    height: 180px !important;
+    border-radius: 16px 16px 0 0 !important;
+    object-fit: cover !important;
   }
-  .feature-list, .section-title {
-    font-size: 1rem !important;
-  }
+
+  /* Navigation */
   .navbar, .navbar-links {
     display: none !important;
   }
+
   .mobile-nav-toggle {
-    display: block !important;
+    display: flex !important;
     position: fixed;
     top: 18px;
     right: 18px;
     z-index: 2000;
-    background: #ffe082;
-    color: #222;
+    background: linear-gradient(135deg, #f5a623 0%, #e6951e 100%);
+    color: #fff;
     border: none;
     border-radius: 50%;
     width: 48px;
     height: 48px;
-    font-size: 2rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-toggle:hover {
+    transform: scale(1.1);
   }
 }
 
 @media (max-width: 400px) {
-  .alkhol-card {
-    flex-basis: 98vw !important;
-    max-width: 99vw !important;
-    padding: 0.7rem 0.2rem;
+  .pizza-card .card-image,
+  .burger-card .card-image,
+  .meal-card .card-image,
+  .salad-card .card-image,
+  .fruit-card .card-image,
+  .colddrinks-card .card-image,
+  .breakfast-card .card-image,
+  .alkhol-card .card-image {
+    height: 150px !important;
   }
-  .alkhol-header h1, .alkhol-cards-section h2, .section-title {
-    font-size: 1.1rem !important;
+
+  .section-title {
+    font-size: 1.2rem !important;
   }
-  .about-section {
-    padding: 0.2rem 0.1rem !important;
-  }
-  .title {
-    font-size: 1.05rem !important;
-  }
-  .text-block {
-    font-size: 0.95rem !important;
+
+  .drink-img {
+    height: 150px !important;
   }
 }
 
