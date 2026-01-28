@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ open: boolean }>();
+defineProps<{ open: boolean }>();
 
 const menuItems = [
   {
