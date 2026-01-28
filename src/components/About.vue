@@ -267,6 +267,8 @@ body, html, #app {
   text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
   letter-spacing: 0.3px;
   margin-bottom: 1rem;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .text-block strong {
@@ -369,41 +371,41 @@ body, html, #app {
 @media (max-width: 768px) {
   .about-section {
     padding: 1rem 0.75rem;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
   }
   
   .content-wrapper {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1vmax;
     padding: 1rem 0;
     text-align: center;
-    max-width: 100%;
-    margin: 0 auto;
+    max-width: 90%;
+    /* margin: 0 auto; */
   }
   
   .left-section {
-    width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 1vmax;
   }
   
   .animated-title {
-    font-size: 2.2rem;
+    font-size: 2vmax;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 1vmax;
   }
   
   .right-section {
     padding-left: 0;
-    width: 100%;
+    gap: 1vmax;
   }
   
   .text-block {
     font-size: 0.95rem;
-    max-width: 100%;
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 1vmax;
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
   
   .veggie {
@@ -414,7 +416,7 @@ body, html, #app {
   .contact-btn {
     padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
-    margin-top: 1rem;
+    margin-top: 1vmax;
   }
   
   .btn-icon {

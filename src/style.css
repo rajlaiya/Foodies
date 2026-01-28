@@ -85,3 +85,263 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* --- Unified card theme (used across pizza/burger/meal/salad/fruit/drinks/breakfast/alcohol grids) --- */
+:root {
+  --card-bg: linear-gradient(160deg, #1a1623 0%, #131019 50%, #1d1626 100%);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+  --card-shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.55);
+  --card-highlight: #ff8a3d;
+  --card-highlight-2: #ffb347;
+  --card-radius: 18px;
+  --card-gap: 1.35rem;
+}
+
+/* Grid sizing so cards feel larger and better spaced on all menu pages */
+body .pizza-grid,
+body .burger-grid,
+body .meal-grid,
+body .salad-grid,
+body .fruit-grid,
+body .colddrinks-grid,
+body .breakfast-grid,
+body .alkhol-cards {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  gap: var(--card-gap) !important;
+  padding: 0.25rem !important;
+}
+
+/* Core card shell */
+body .pizza-card,
+body .burger-card,
+body .meal-card,
+body .salad-card,
+body .fruit-card,
+body .colddrinks-card,
+body .breakfast-card,
+body .alkhol-card {
+  position: relative;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  min-height: 280px;
+}
+
+body .pizza-card::before,
+body .burger-card::before,
+body .meal-card::before,
+body .salad-card::before,
+body .fruit-card::before,
+body .colddrinks-card::before,
+body .breakfast-card::before,
+body .alkhol-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255, 138, 61, 0.18), transparent 45%),
+              radial-gradient(circle at 80% 0%, rgba(255, 179, 71, 0.14), transparent 40%);
+  pointer-events: none;
+}
+
+body .pizza-card:hover,
+body .burger-card:hover,
+body .meal-card:hover,
+body .salad-card:hover,
+body .fruit-card:hover,
+body .colddrinks-card:hover,
+body .breakfast-card:hover,
+body .alkhol-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(255, 138, 61, 0.35);
+}
+
+/* Media area */
+body .pizza-card .card-image,
+body .burger-card .card-image,
+body .meal-card .card-image,
+body .salad-card .card-image,
+body .fruit-card .card-image,
+body .colddrinks-card .card-image,
+body .breakfast-card .card-image,
+body .alkhol-card .card-image {
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body .pizza-card .card-image img,
+body .burger-card .card-image img,
+body .meal-card .card-image img,
+body .salad-card .card-image img,
+body .fruit-card .card-image img,
+body .colddrinks-card .card-image img,
+body .breakfast-card .card-image img,
+body .alkhol-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: saturate(1.15) contrast(1.05);
+}
+
+body .pizza-card:hover .card-image img,
+body .burger-card:hover .card-image img,
+body .meal-card:hover .card-image img,
+body .salad-card:hover .card-image img,
+body .fruit-card:hover .card-image img,
+body .colddrinks-card:hover .card-image img,
+body .breakfast-card:hover .card-image img,
+body .alkhol-card:hover .card-image img {
+  transform: scale(1.06);
+}
+
+/* Content area */
+body .pizza-card .card-content,
+body .burger-card .card-content,
+body .meal-card .card-content,
+body .salad-card .card-content,
+body .fruit-card .card-content,
+body .colddrinks-card .card-content,
+body .breakfast-card .card-content,
+body .alkhol-card .card-content {
+  padding: 1.1rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: #f6f2ff;
+}
+
+body .pizza-card h3,
+body .burger-card h3,
+body .meal-card h3,
+body .salad-card h3,
+body .fruit-card h3,
+body .colddrinks-card h3,
+body .breakfast-card h3,
+body .alkhol-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.2px;
+  color: #fff;
+}
+
+body .pizza-card p,
+body .burger-card p,
+body .meal-card p,
+body .salad-card p,
+body .fruit-card p,
+body .colddrinks-card p,
+body .breakfast-card p,
+body .alkhol-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+body .pizza-card .pizza-details,
+body .burger-card .burger-details,
+body .meal-card .meal-details,
+body .salad-card .salad-details,
+body .fruit-card .fruit-details,
+body .colddrinks-card .drink-details,
+body .breakfast-card .item-details,
+body .alkhol-card .drink-details,
+body .alkhol-card .availability-status {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+body .pizza-card .pizza-price,
+body .burger-card .burger-price,
+body .meal-card .meal-price,
+body .salad-card .salad-price,
+body .fruit-card .item-price,
+body .colddrinks-card .drink-price,
+body .breakfast-card .item-price,
+body .alkhol-card .drink-price {
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(120deg, var(--card-highlight), var(--card-highlight-2));
+  padding: 0.35rem 0.65rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(255, 138, 61, 0.25);
+}
+
+body .pizza-card .pizza-size,
+body .burger-card .burger-size,
+body .meal-card .meal-size,
+body .salad-card .salad-size,
+body .fruit-card .item-size,
+body .colddrinks-card .drink-size,
+body .breakfast-card .item-size,
+body .alkhol-card .drink-size {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.55rem;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body .pizza-card .add-to-cart-btn,
+body .burger-card .add-to-cart-btn,
+body .meal-card .add-to-cart-btn,
+body .salad-card .add-to-cart-btn,
+body .fruit-card .add-to-cart-btn,
+body .colddrinks-card .add-to-cart-btn,
+body .breakfast-card .add-to-cart-btn,
+body .alkhol-card .add-to-cart-btn {
+  background: linear-gradient(120deg, var(--card-highlight), var(--card-highlight-2));
+  color: #0f0b16;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-top: 0.4rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 20px rgba(255, 138, 61, 0.25);
+}
+
+body .pizza-card .add-to-cart-btn:hover,
+body .burger-card .add-to-cart-btn:hover,
+body .meal-card .add-to-cart-btn:hover,
+body .salad-card .add-to-cart-btn:hover,
+body .fruit-card .add-to-cart-btn:hover,
+body .colddrinks-card .add-to-cart-btn:hover,
+body .breakfast-card .add-to-cart-btn:hover,
+body .alkhol-card .add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(255, 138, 61, 0.35);
+}
+
+@media (max-width: 700px) {
+  body .pizza-card,
+  body .burger-card,
+  body .meal-card,
+  body .salad-card,
+  body .fruit-card,
+  body .colddrinks-card,
+  body .breakfast-card,
+  body .alkhol-card {
+    min-height: 260px;
+  }
+
+  body .pizza-card .card-image,
+  body .burger-card .card-image,
+  body .meal-card .card-image,
+  body .salad-card .card-image,
+  body .fruit-card .card-image,
+  body .colddrinks-card .card-image,
+  body .breakfast-card .card-image,
+  body .alkhol-card .card-image {
+    height: 170px;
+  }
+}

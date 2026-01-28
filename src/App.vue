@@ -18,7 +18,6 @@
       <nav :class="['navbar', { 'sidebar-mobile': isMobile, 'sidebar-open': sidebarOpen }]" v-show="!isMobile || sidebarOpen">
         <div class="navbar-logo">Foodies</div>
         <ul class="navbar-links">
-          <li><router-link to="/about" @click="closeSidebar">About</router-link></li>
           <li class="dropdown">
             <a href="#" class="dropbtn">Menu ▾</a>
             <div class="dropdown-content">
@@ -37,19 +36,38 @@
               <router-link to="/alcohol" @click="closeSidebar">Alkhol Point</router-link>
             </div>
           </li>
-          <li class="cart-link">
-            <router-link to="/cart" @click="closeSidebar">
-              Cart
-              <span v-if="cartStore.getItemCount() > 0" class="cart-badge">{{ cartStore.getItemCount() }}</span>
-            </router-link>
-          </li>
-          <li><router-link to="/contact" @click="closeSidebar">Contact</router-link></li>
         </ul>
       </nav>
     </header>
     <main class="main-content asphalt-bg">
       <router-view />
     </main>
+
+    <MobileMenuOverlay :open="showMenuOverlay" @close="closeMainMenuOverlay" />
+
+    <!-- Mobile bottom navigation -->
+    <nav v-if="isMobile" class="mobile-tabbar">
+      <router-link to="/about" class="tab-item" @click="closeSidebar">
+        <span class="tab-icon">🏠</span>
+        <span class="tab-label">About</span>
+      </router-link>
+      <router-link to="/favorites" class="tab-item" @click="closeSidebar">
+        <span class="tab-icon">❤️</span>
+        <span class="tab-label">Favorites</span>
+      </router-link>
+      <button type="button" class="tab-item center-btn" @click="openMainMenu">
+        <span class="plus">＋</span>
+      </button>
+      <router-link to="/cart" class="tab-item" @click="closeSidebar">
+        <span class="tab-icon">🛒</span>
+        <span class="tab-label">Cart</span>
+        <span v-if="cartStore.getItemCount() > 0" class="tab-badge">{{ cartStore.getItemCount() }}</span>
+      </router-link>
+      <router-link to="/contact" class="tab-item" @click="closeSidebar">
+        <span class="tab-icon">📞</span>
+        <span class="tab-label">Contact</span>
+      </router-link>
+    </nav>
   </div>
 </template>
 
@@ -58,10 +76,12 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { RouterView, RouterLink } from 'vue-router';
 import { cartNotification, cartStore } from './stores/cart.ts';
 import FloatingCart from './components/FloatingCart.vue';
+import MobileMenuOverlay from './components/MobileMenuOverlay.vue';
 
 const isMobile = ref(false);
 const sidebarOpen = ref(false);
 const floatingCart = ref();
+const showMenuOverlay = ref(false);
 
 function checkMobile() {
   isMobile.value = window.innerWidth <= 700;
@@ -69,6 +89,14 @@ function checkMobile() {
 }
 function closeSidebar() {
   if (isMobile.value) sidebarOpen.value = false;
+}
+
+function openMainMenu() {
+  showMenuOverlay.value = true;
+}
+
+function closeMainMenuOverlay() {
+  showMenuOverlay.value = false;
 }
 onMounted(() => {
   checkMobile();
@@ -178,6 +206,88 @@ header {
   height: 100vh;
   background: rgba(0,0,0,0.25);
   z-index: 1999;
+}
+
+/* Mobile tab bar */
+.mobile-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  padding: 0.6rem 0.9rem 0.9rem;
+  background: rgba(13, 10, 18, 0.9);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  z-index: 1600;
+  border-radius: 18px 18px 0 0;
+}
+
+.mobile-tabbar .tab-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  color: #f5f1ff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobile-tabbar .tab-icon {
+  font-size: 1.2rem;
+}
+
+.mobile-tabbar .tab-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.2px;
+}
+
+.mobile-tabbar .tab-item.router-link-active {
+  color: #ffb347;
+}
+
+.mobile-tabbar .tab-badge {
+  position: absolute;
+  top: 2px;
+  right: 16px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: #ff8a3d;
+  color: #0c0a12;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-tabbar .center-btn {
+  justify-content: center;
+}
+
+.mobile-tabbar .center-btn .plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #ffb347, #ff8a3d);
+  color: #0c0a12;
+  font-size: 1.8rem;
+  font-weight: 800;
+  box-shadow: 0 10px 26px rgba(255, 138, 61, 0.35);
+  transform: translateY(-18%);
 }
 
 /* Global Cart Notification */
@@ -346,6 +456,7 @@ header {
   }
   .main-content {
     margin-top: 0 !important;
+    padding-bottom: 6.5rem;
   }
   .navbar,
   .navbar.sidebar-open {

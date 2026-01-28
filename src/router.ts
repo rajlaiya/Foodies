@@ -11,6 +11,7 @@ import Cart from './components/cart.vue';
 import Contact from './components/Contact.vue';
 import Pizza from './components/Pizza.vue';
 import Burger from './components/Burger.vue';
+import Favorites from './components/Favorites.vue';
 
 const routes = [
   { path: '/', redirect: '/about' },
@@ -25,6 +26,7 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/pizza', component: Pizza },
   { path: '/burger', component: Burger },
+  { path: '/favorites', component: Favorites },
 ];
 
 const router = createRouter({

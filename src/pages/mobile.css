@@ -1,5 +1,98 @@
 /* Mobile responsive styles for AlkholPoint.vue and similar card layouts */
 @media (max-width: 700px) {
+  html, body, #app {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .main-content,
+  .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.75rem 0.75rem !important;
+    box-sizing: border-box;
+  }
+
+  .pizza-grid,
+  .burger-grid,
+  .meal-grid,
+  .salad-grid,
+  .fruit-grid,
+  .colddrinks-grid,
+  .breakfast-grid,
+  .alkhol-cards {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)) !important;
+    gap: 1.1rem !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  .pizza-card,
+  .burger-card,
+  .meal-card,
+  .salad-card,
+  .fruit-card,
+  .colddrinks-card,
+  .breakfast-card,
+  .alkhol-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.35) !important;
+    background: linear-gradient(160deg, #1a1623 0%, #121019 50%, #1d1626 100%) !important;
+  }
+
+  .pizza-card .card-image,
+  .burger-card .card-image,
+  .meal-card .card-image,
+  .salad-card .card-image,
+  .fruit-card .card-image,
+  .colddrinks-card .card-image,
+  .breakfast-card .card-image,
+  .alkhol-card .card-image {
+    height: 170px !important;
+  }
+
+  .pizza-card h3,
+  .burger-card h3,
+  .meal-card h3,
+  .salad-card h3,
+  .fruit-card h3,
+  .colddrinks-card h3,
+  .breakfast-card h3,
+  .alkhol-card h3 {
+    font-size: 1rem !important;
+  }
+
+  .pizza-card p,
+  .burger-card p,
+  .meal-card p,
+  .salad-card p,
+  .fruit-card p,
+  .colddrinks-card p,
+  .breakfast-card p,
+  .alkhol-card p {
+    font-size: 0.9rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .pizza-card .add-to-cart-btn,
+  .burger-card .add-to-cart-btn,
+  .meal-card .add-to-cart-btn,
+  .salad-card .add-to-cart-btn,
+  .fruit-card .add-to-cart-btn,
+  .colddrinks-card .add-to-cart-btn,
+  .breakfast-card .add-to-cart-btn,
+  .alkhol-card .add-to-cart-btn {
+    font-size: 0.95rem !important;
+    padding: 0.75rem !important;
+    border-radius: 12px !important;
+  }
+
   .alkhol-point {
     padding: 0.5rem 0 0 0;
   }
@@ -48,7 +141,7 @@
     padding: 0.5rem 0.2rem !important;
     min-height: 100vh !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: auto !important;
     overflow: hidden !important;
   }
   .content-wrapper {
