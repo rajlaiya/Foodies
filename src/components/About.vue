@@ -3,15 +3,6 @@
     <div class="overlay"></div>
     <div class="salad-bg"></div>
     
-    <!-- Floating Veg Images -->
-    <div class="floating-veggies">
-      <img src="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?w=100&h=100&fit=crop&crop=center" alt="Carrot" class="veggie veggie-1" />
-      <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=100&h=100&fit=crop&crop=center" alt="Broccoli" class="veggie veggie-2" />
-      <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=100&h=100&fit=crop&crop=center" alt="Avocado" class="veggie veggie-3" />
-      <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=100&h=100&fit=crop&crop=center" alt="Bell Pepper" class="veggie veggie-4" />
-      <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=100&h=100&fit=crop&crop=center" alt="Tomato" class="veggie veggie-5" />
-    </div>
-    
     <div class="content-wrapper">
       <div class="left-section">
         <h1 class="title animated-title">
@@ -120,73 +111,6 @@ body, html, #app {
   opacity: 0.15;
   z-index: 2;
   pointer-events: none;
-}
-
-/* Floating Vegetables Animation */
-.floating-veggies {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.veggie {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: float 6s ease-in-out infinite;
-}
-
-.veggie-1 {
-  top: 10%;
-  left: 10%;
-  width: 80px;
-  height: 80px;
-  animation-delay: 0s;
-}
-
-.veggie-2 {
-  top: 20%;
-  right: 15%;
-  width: 60px;
-  height: 60px;
-  animation-delay: 1s;
-}
-
-.veggie-3 {
-  bottom: 25%;
-  left: 8%;
-  width: 70px;
-  height: 70px;
-  animation-delay: 2s;
-}
-
-.veggie-4 {
-  bottom: 15%;
-  right: 20%;
-  width: 65px;
-  height: 65px;
-  animation-delay: 3s;
-}
-
-.veggie-5 {
-  top: 60%;
-  left: 5%;
-  width: 55px;
-  height: 55px;
-  animation-delay: 4s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
 }
 
 .content-wrapper {

@@ -109,9 +109,9 @@ export const cartNotification = reactive({
     this.message = message
     this.visible = true
     
-    // Auto hide after 3 seconds
+    // Auto hide after 1.5 seconds (faster)
     setTimeout(() => {
       this.visible = false
-    }, 3000)
+    }, 1500)
   }
 })

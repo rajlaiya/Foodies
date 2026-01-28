@@ -10,31 +10,39 @@
     <!-- Floating Cart Animation -->
     <FloatingCart ref="floatingCart" />
     
-    <header>
-      <button class="sidebar-toggle" v-if="isMobile && !sidebarOpen" @click="sidebarOpen = !sidebarOpen">
-        <span>☰</span>
-      </button>
-      <div v-if="isMobile && sidebarOpen" class="sidebar-backdrop" @click="closeSidebar"></div>
-      <nav :class="['navbar', { 'sidebar-mobile': isMobile, 'sidebar-open': sidebarOpen }]" v-show="!isMobile || sidebarOpen">
+    <header v-if="!isMobile">
+      <nav class="navbar">
         <div class="navbar-logo">Foodies</div>
         <ul class="navbar-links">
+          <li>
+            <router-link to="/about" class="nav-link">🏠 About</router-link>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropbtn">Menu ▾</a>
             <div class="dropdown-content">
-              <router-link to="/pizza" @click="closeSidebar">Pizza</router-link>
-              <router-link to="/burger" @click="closeSidebar">Burger</router-link>
-              <router-link to="/breakfast" @click="closeSidebar">Breakfast Masti</router-link>
-              <router-link to="/meal" @click="closeSidebar">Proper Meal</router-link>
+              <router-link to="/pizza">Pizza</router-link>
+              <router-link to="/burger">Burger</router-link>
+              <router-link to="/breakfast">Breakfast Masti</router-link>
+              <router-link to="/meal">Proper Meal</router-link>
             </div>
           </li>
           <li class="dropdown">
             <a href="#" class="dropbtn">More ▾</a>
             <div class="dropdown-content">
-              <router-link to="/salad" @click="closeSidebar">Salad</router-link>
-              <router-link to="/fruit" @click="closeSidebar">Fruit Dishes</router-link>
-              <router-link to="/cold" @click="closeSidebar">Cold Drinks</router-link>
-              <router-link to="/alcohol" @click="closeSidebar">Alkhol Point</router-link>
+              <router-link to="/salad">Salad</router-link>
+              <router-link to="/fruit">Fruit Dishes</router-link>
+              <router-link to="/cold">Cold Drinks</router-link>
+              <router-link to="/alcohol">Alkhol Point</router-link>
             </div>
+          </li>
+          <li>
+            <router-link to="/cart" class="nav-link">
+              🛒 Cart
+              <span v-if="cartStore.getItemCount() > 0" class="cart-badge">{{ cartStore.getItemCount() }}</span>
+            </router-link>
+          </li>
+          <li>
+            <router-link to="/contact" class="nav-link">📞 Contact</router-link>
           </li>
         </ul>
       </nav>
@@ -47,23 +55,23 @@
 
     <!-- Mobile bottom navigation -->
     <nav v-if="isMobile" class="mobile-tabbar">
-      <router-link to="/about" class="tab-item" @click="closeSidebar">
+      <router-link to="/about" class="tab-item">
         <span class="tab-icon">🏠</span>
         <span class="tab-label">About</span>
       </router-link>
-      <router-link to="/favorites" class="tab-item" @click="closeSidebar">
+      <router-link to="/favorites" class="tab-item">
         <span class="tab-icon">❤️</span>
         <span class="tab-label">Favorites</span>
       </router-link>
       <button type="button" class="tab-item center-btn" @click="openMainMenu">
         <span class="plus">＋</span>
       </button>
-      <router-link to="/cart" class="tab-item" @click="closeSidebar">
+      <router-link to="/cart" class="tab-item">
         <span class="tab-icon">🛒</span>
         <span class="tab-label">Cart</span>
         <span v-if="cartStore.getItemCount() > 0" class="tab-badge">{{ cartStore.getItemCount() }}</span>
       </router-link>
-      <router-link to="/contact" class="tab-item" @click="closeSidebar">
+      <router-link to="/contact" class="tab-item">
         <span class="tab-icon">📞</span>
         <span class="tab-label">Contact</span>
       </router-link>
@@ -182,6 +190,32 @@ header {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/* Cart badge for desktop nav */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #ff8a3d;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .main-content {
   padding: 2rem;
   border-radius: 16px;
@@ -295,43 +329,44 @@ header {
   position: fixed;
   top: 80px;
   right: 20px;
-  background: linear-gradient(45deg, #4caf50, #45a049);
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
   color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 15px;
-  font-weight: bold;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 9999;
-  max-width: 300px;
-  backdrop-filter: blur(10px);
+  max-width: 280px;
 }
 
 @media (max-width: 768px) {
   .global-notification {
-    top: 50%;
+    top: auto;
+    bottom: 100px;
     left: 50%;
     right: auto;
-    transform: translate(-50%, -50%);
-    max-width: 80vw;
-    font-size: 3vmin;
-    padding: 3vmin 4vmin;
-    border-radius: 3vmin;
+    transform: translateX(-50%);
+    max-width: 85vw;
+    font-size: 0.9rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
     text-align: center;
   }
 }
 
 .notification-enter-active, .notification-leave-active {
-  transition: all 0.4s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .notification-enter-from {
   opacity: 0;
-  transform: translateX(100px) scale(0.8);
+  transform: translateY(-10px);
 }
 
 .notification-leave-to {
   opacity: 0;
-  transform: translateX(100px) scale(0.8);
+  transform: translateY(-10px);
 }
 
 /* Cart Badge */

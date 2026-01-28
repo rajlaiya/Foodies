@@ -469,7 +469,7 @@ onMounted(() => {
 
 .alkhol-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 2.5rem;
   padding: 0;
 }
