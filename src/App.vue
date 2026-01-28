@@ -95,9 +95,6 @@ function checkMobile() {
   isMobile.value = window.innerWidth <= 700;
   if (!isMobile.value) sidebarOpen.value = false;
 }
-function closeSidebar() {
-  if (isMobile.value) sidebarOpen.value = false;
-}
 
 function openMainMenu() {
   showMenuOverlay.value = true;
