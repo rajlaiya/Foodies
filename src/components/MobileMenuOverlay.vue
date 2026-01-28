@@ -32,12 +32,6 @@ defineProps<{ open: boolean }>();
 
 const menuItems = [
   {
-    title: 'About',
-    to: '/about',
-    bg: '#4c5568',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop&crop=center'
-  },
-  {
     title: 'Breakfast',
     to: '/breakfast',
     bg: '#f0ba7a',
@@ -84,24 +78,6 @@ const menuItems = [
     to: '/alcohol',
     bg: '#4c5568',
     image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop&crop=center'
-  },
-  {
-    title: 'Favorites',
-    to: '/favorites',
-    bg: '#e3d7f5',
-    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=300&fit=crop&crop=center'
-  },
-  {
-    title: 'Cart',
-    to: '/cart',
-    bg: '#f8e3c2',
-    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop&crop=center'
-  },
-  {
-    title: 'Contact',
-    to: '/contact',
-    bg: '#d6e4f0',
-    image: 'https://images.unsplash.com/photo-1527169402691-feff5539e52c?w=400&h=300&fit=crop&crop=center'
   }
 ];
 </script>
@@ -121,7 +97,7 @@ const menuItems = [
 .menu-sheet {
   position: absolute;
   inset: 0;
-  padding: 1rem 1rem 1.2rem;
+  padding: 1rem 1rem 6rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -155,6 +131,7 @@ const menuItems = [
   flex-direction: column;
   gap: 0.5rem;
   pointer-events: auto;
+  padding-bottom: 2rem;
 }
 .menu-row {
   position: relative;
