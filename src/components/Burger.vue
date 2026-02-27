@@ -1,24 +1,5 @@
 <template>
   <div class="burger-page">
-    <!-- Hero Section -->
-    <section class="burger-section">
-      <div class="content-wrapper">
-        <div class="left-section">
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop&crop=center" alt="Burger" class="burger-hero-image" />
-        </div>
-        <div class="right-section">          <p class="text-block">
-            The burger is a culinary icon that has conquered the world. Our gourmet burgers are crafted with premium plant-based patties, fresh ingredients, and artisanal buns baked daily.
-          </p>
-          <p class="text-block">
-            From classic veggie burgers to specialty creations, each burger is grilled to perfection and served with our signature sides. Experience the ultimate comfort food with a healthy twist.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Spacer between sections -->
-    <div class="section-spacer"></div>
-
     <!-- Shopping Cards Section -->
     <section class="shopping-section">
       <div class="container">
@@ -138,74 +119,6 @@ const addToCart = (burger) => {
   padding: 0;
 }
 
-/* Hero Section */
-.burger-section {
-  color: white;
-  height: 80vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2rem;
-  backdrop-filter: blur(10px);
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 2rem;
-  padding: 0 1rem;
-}
-
-.left-section {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.burger-hero-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 8px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.burger-hero-image:hover {
-  transform: scale(1.05);
-}
-
-.right-section {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.text-block {
-  font-size: 18px;
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
-  color: #fff;
-  max-width: 90%;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-style: italic;
-}
-
-/* Section Spacer */
-.section-spacer {
-  height: 4rem;
-  background: transparent;
-}
-
 /* Shopping Section */
 .shopping-section {
   backdrop-filter: blur(15px);
@@ -214,9 +127,9 @@ const addToCart = (burger) => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .section-title {
@@ -230,19 +143,20 @@ const addToCart = (burger) => {
 
 .burger-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   padding: 0;
 }
 
 .burger-card {
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
   transition: all 0.4s ease;
-  height: fit-content;
+  display: flex;
+  flex-direction: row;
 }
 
 .burger-card:hover {
@@ -253,9 +167,11 @@ const addToCart = (burger) => {
 }
 
 .card-image {
-  width: 100%;
-  height: 200px;
+  width: 240px;
+  min-width: 240px;
+  min-height: 200px;
   overflow: hidden;
+  border-radius: 22px 0 0 22px;
 }
 
 .card-image img {
@@ -286,6 +202,10 @@ const addToCart = (burger) => {
 
 .card-content {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .burger-name {
@@ -347,33 +267,17 @@ const addToCart = (burger) => {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .burger-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .burger-section {
-    padding: 1rem 0.25rem;
-    min-height: 100vh;
-  }
-  
+@media (max-width: 600px) {
   .container {
     padding: 0 0.25rem;
     max-width: 100%;
-  }
-  
-  .content-wrapper {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0 0.25rem;
-    text-align: center;
-  }
-  
-  .left-section {
-    width: 100%;
   }
   
   .section-title {
@@ -382,49 +286,28 @@ const addToCart = (burger) => {
     line-height: 1.2;
   }
   
-  .text-block {
-    font-size: 2.8vmin;
-    line-height: 1.4;
-    margin-bottom: 0.75rem;
-    max-width: 100%;
-    padding: 0;
-  }
-  
-  .right-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .burger-hero-image {
-    width: 20vmax;
-    height: 20vmax;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 150px;
-    max-height: 150px;
-  }
-  
   .burger-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5vmin;
+    gap: 0.5rem;
     max-width: 100%;
     margin: 0 auto;
     padding: 0;
   }
   
   .burger-card {
-    padding: 1vmin;
+    flex-direction: column;
+    padding: 0;
     max-width: 100%;
     border-radius: 2vmin;
   }
   
   .card-image {
+    width: 100%;
+    min-width: 100%;
     height: 25vmin;
     min-height: 120px;
     max-height: 180px;
+    border-radius: 22px 22px 0 0;
   }
   
   .card-content {
@@ -471,45 +354,14 @@ const addToCart = (burger) => {
 }
 
 @media (max-width: 480px) {
-  .burger-section {
-    padding: 0.75rem 0.15rem;
-  }
-  
-  .container {
-    padding: 0 0.15rem;
-  }
-  
-  .content-wrapper {
-    padding: 0 0.15rem;
-  }
-  
   .section-title {
     font-size: 5.5vmax;
     line-height: 1.1;
   }
   
-  .text-block {
-    font-size: 3.2vmin;
-    padding: 0;
-  }
-  
-  .burger-hero-image {
-    width: 22vmax;
-    height: 22vmax;
-    min-width: 90px;
-    min-height: 90px;
-    max-width: 130px;
-    max-height: 130px;
-  }
-  
   .burger-grid {
-    gap: 0.25vmin;
+    gap: 0.25rem;
     padding: 0;
-  }
-  
-  .burger-card {
-    padding: 1vmin;
-    border-radius: 1.8vmin;
   }
   
   .card-image {
@@ -546,38 +398,6 @@ const addToCart = (burger) => {
     font-size: 2.8vmin;
     border-radius: 1.3vmin;
     width: 95%;
-  }
-}
-
-@media (max-width: 360px) {
-  .burger-section {
-    padding: 0.5rem 0.1rem;
-  }
-  
-  .container {
-    padding: 0 0.1rem;
-  }
-  
-  .content-wrapper {
-    padding: 0 0.1rem;
-  }
-  
-  .burger-grid {
-    gap: 0.6vmin;
-    padding: 0 0.1rem;
-  }
-  
-  .burger-card {
-    padding: 1.5vmin;
-  }
-  
-  .card-content {
-    padding: 1.5vmin;
-  }
-  
-  .add-to-cart-btn {
-    width: 98%;
-    font-size: 3vmin;
   }
 }
 </style>

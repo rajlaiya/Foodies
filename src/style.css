@@ -94,8 +94,8 @@ button:focus-visible {
   --card-shadow-hover: 0 18px 40px rgba(0, 0, 0, 0.55);
   --card-highlight: #ff8a3d;
   --card-highlight-2: #ffb347;
-  --card-radius: 18px;
-  --card-gap: 1.35rem;
+  --card-radius: 22px;
+  --card-gap: 1.5rem;
 }
 
 /* Grid sizing so cards feel larger and better spaced on all menu pages */
@@ -107,12 +107,13 @@ body .fruit-grid,
 body .colddrinks-grid,
 body .breakfast-grid,
 body .alkhol-cards {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: var(--card-gap) !important;
-  padding: 0.25rem !important;
+  padding: 0.5rem !important;
+  max-width: 100% !important;
 }
 
-/* Core card shell */
+/* Core card shell – horizontal layout */
 body .pizza-card,
 body .burger-card,
 body .meal-card,
@@ -128,7 +129,10 @@ body .alkhol-card {
   box-shadow: var(--card-shadow);
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  min-height: 280px;
+  width: 100%;
+  display: flex !important;
+  flex-direction: row !important;
+  min-height: 0;
 }
 
 body .pizza-card::before,
@@ -160,7 +164,7 @@ body .alkhol-card:hover {
   border-color: rgba(255, 138, 61, 0.35);
 }
 
-/* Media area */
+/* Media area – left side of horizontal card */
 body .pizza-card .card-image,
 body .burger-card .card-image,
 body .meal-card .card-image,
@@ -169,9 +173,14 @@ body .fruit-card .card-image,
 body .colddrinks-card .card-image,
 body .breakfast-card .card-image,
 body .alkhol-card .card-image {
-  height: 200px;
+  width: 240px !important;
+  min-width: 240px !important;
+  height: auto !important;
+  min-height: 220px;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--card-radius) 0 0 var(--card-radius) !important;
 }
 
 body .pizza-card .card-image img,
@@ -201,7 +210,7 @@ body .alkhol-card:hover .card-image img {
   transform: scale(1.06);
 }
 
-/* Content area */
+/* Content area – right side of horizontal card */
 body .pizza-card .card-content,
 body .burger-card .card-content,
 body .meal-card .card-content,
@@ -215,6 +224,8 @@ body .alkhol-card .card-content {
   flex-direction: column;
   gap: 0.6rem;
   color: #f6f2ff;
+  flex: 1;
+  justify-content: center;
 }
 
 body .pizza-card h3,
@@ -322,16 +333,29 @@ body .alkhol-card .add-to-cart-btn:hover {
   box-shadow: 0 14px 26px rgba(255, 138, 61, 0.35);
 }
 
-@media (max-width: 700px) {
-  body .pizza-card,
-  body .burger-card,
-  body .meal-card,
-  body .salad-card,
-  body .fruit-card,
-  body .colddrinks-card,
-  body .breakfast-card,
-  body .alkhol-card {
-    min-height: 260px;
+@media (max-width: 1200px) {
+  body .pizza-grid,
+  body .burger-grid,
+  body .meal-grid,
+  body .salad-grid,
+  body .fruit-grid,
+  body .colddrinks-grid,
+  body .breakfast-grid,
+  body .alkhol-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 900px) {
+  body .pizza-grid,
+  body .burger-grid,
+  body .meal-grid,
+  body .salad-grid,
+  body .fruit-grid,
+  body .colddrinks-grid,
+  body .breakfast-grid,
+  body .alkhol-cards {
+    grid-template-columns: 1fr !important;
   }
 
   body .pizza-card .card-image,
@@ -342,6 +366,38 @@ body .alkhol-card .add-to-cart-btn:hover {
   body .colddrinks-card .card-image,
   body .breakfast-card .card-image,
   body .alkhol-card .card-image {
-    height: 170px;
+    width: 200px !important;
+    min-width: 200px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Revert to vertical cards on small screens */
+  body .pizza-card,
+  body .burger-card,
+  body .meal-card,
+  body .salad-card,
+  body .fruit-card,
+  body .colddrinks-card,
+  body .breakfast-card,
+  body .alkhol-card {
+    flex-direction: column !important;
+  }
+
+  body .pizza-card .card-image,
+  body .burger-card .card-image,
+  body .meal-card .card-image,
+  body .salad-card .card-image,
+  body .fruit-card .card-image,
+  body .colddrinks-card .card-image,
+  body .breakfast-card .card-image,
+  body .alkhol-card .card-image {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 180px !important;
+    min-height: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: var(--card-radius) var(--card-radius) 0 0 !important;
   }
 }

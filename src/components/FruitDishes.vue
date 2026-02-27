@@ -1,25 +1,5 @@
 <template>
   <div class="fruit-page">
-    <!-- Hero Section -->
-    <section class="fruit-section">
-      <div class="content-wrapper">
-        <div class="left-section">
-          <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=400&h=300&fit=crop&crop=center" alt="Fruit Dishes" class="fruit-hero-image" />
-        </div>
-        <div class="right-section">
-          <p class="text-block">
-            Sweet and refreshing fruit dishes for a healthy treat. Our carefully curated fruit selections feature the finest seasonal and exotic fruits, beautifully presented and bursting with natural flavors.
-          </p>
-          <p class="text-block">
-            From traditional fruit salads to creative fruit bowls and smoothies, each dish is prepared with the freshest ingredients to provide you with maximum nutrition and delightful taste experiences.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Spacer between sections -->
-    <div class="section-spacer"></div>
-
     <!-- Shopping Cards Section -->
     <section class="shopping-section">
       <div class="container">
@@ -148,74 +128,6 @@ const addToCart = (item) => {
   padding: 0;
 }
 
-/* Hero Section */
-.fruit-section {
-  color: white;
-  height: 80vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2rem;
-  backdrop-filter: blur(10px);
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 2rem;
-  padding: 0 1rem;
-}
-
-.left-section {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.fruit-hero-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 8px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.fruit-hero-image:hover {
-  transform: scale(1.05);
-}
-
-.right-section {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.text-block {
-  font-size: 18px;
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
-  color: #fff;
-  max-width: 90%;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  font-style: italic;
-}
-
-/* Section Spacer */
-.section-spacer {
-  height: 4rem;
-  background: transparent;
-}
-
 /* Shopping Section */
 .shopping-section {
   backdrop-filter: blur(15px);
@@ -224,9 +136,9 @@ const addToCart = (item) => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .section-title {
@@ -240,19 +152,20 @@ const addToCart = (item) => {
 
 .fruit-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   padding: 0;
 }
 
 .fruit-card {
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgb(255, 255, 255);
   overflow: hidden;
   transition: all 0.4s ease;
-  height: fit-content;
+  display: flex;
+  flex-direction: row;
 }
 
 .fruit-card:hover {
@@ -263,9 +176,11 @@ const addToCart = (item) => {
 }
 
 .card-image {
-  width: 100%;
-  height: 200px;
+  width: 240px;
+  min-width: 240px;
+  min-height: 200px;
   overflow: hidden;
+  border-radius: 22px 0 0 22px;
 }
 
 .card-image img {
@@ -292,6 +207,10 @@ const addToCart = (item) => {
 
 .card-content {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .item-name {
@@ -353,33 +272,17 @@ const addToCart = (item) => {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .fruit-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .fruit-section {
-    padding: 1rem 0;
-    min-height: 100vh;
-  }
-  
+@media (max-width: 600px) {
   .container {
     padding: 0;
     max-width: 100%;
-  }
-  
-  .content-wrapper {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .left-section {
-    width: 100%;
   }
   
   .section-title {
@@ -388,40 +291,26 @@ const addToCart = (item) => {
     line-height: 1.2;
   }
   
-  .text-block {
-    font-size: 3vmin;
-    line-height: 1.5;
-    margin-bottom: 1rem;
-    max-width: 100%;
-  }
-  
-  .right-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-  
-  .fruit-hero-image {
-    width: 15vmax;
-    height: 15vmax;
-  }
-  
   .fruit-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5vmin;
+    gap: 0.5rem;
     max-width: 100%;
     margin: 0 auto;
     padding: 0;
   }
   
   .fruit-card {
-    padding: 0.5vmin;
+    flex-direction: column;
+    padding: 0;
     max-width: 100%;
   }
   
   .card-image {
+    width: 100%;
+    min-width: 100%;
     height: 15vmax;
+    min-height: auto;
+    border-radius: 22px 22px 0 0;
   }
   
   .card-content {
@@ -458,35 +347,14 @@ const addToCart = (item) => {
 }
 
 @media (max-width: 480px) {
-  .fruit-section {
-    padding: 0.75rem 0;
-  }
-  
-  .container {
-    padding: 0;
-  }
-  
   .section-title {
     font-size: 5vmax;
     line-height: 1.3;
   }
   
-  .text-block {
-    font-size: 3.5vmin;
-  }
-  
-  .fruit-hero-image {
-    width: 18vmax;
-    height: 18vmax;
-  }
-  
   .fruit-grid {
-    gap: 0.25vmin;
+    gap: 0.25rem;
     padding: 0;
-  }
-  
-  .fruit-card {
-    padding: 0.5vmin;
   }
   
   .card-image {

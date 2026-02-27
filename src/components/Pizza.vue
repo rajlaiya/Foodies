@@ -1,20 +1,5 @@
 <template>
-  <div class="pizza-page">    <!-- Hero Section -->    <section class="pizza-section">
-      <div class="content-wrapper"><div class="left-section">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop&crop=center" alt="Pizza" class="pizza-hero-image" />
-        </div>        <div class="right-section">
-          <p class="text-block">
-            Pizza originated in Italy and has become one of the world's most beloved dishes. Our artisan pizzas are handcrafted using traditional techniques passed down through generations.
-          </p>
-          <p class="text-block">
-            We use only the finest ingredients - San Marzano tomatoes, fresh mozzarella di bufala, and premium toppings sourced locally. Each pizza is fired in our authentic wood-burning oven at 900°F for the perfect crispy crust.
-          </p>
-        </div>
-      </div>    </section>
-
-    <!-- Spacer between sections -->
-    <div class="section-spacer"></div>
-
+  <div class="pizza-page">
     <!-- Shopping Cards Section -->
     <section class="shopping-section">
       <div class="container">
@@ -138,80 +123,6 @@ const addToCart = (pizza) => {
   padding: 0;
 }
 
-/* Hero Section */
-.pizza-section {
-  color: white;
-  height: 80vh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2rem;  backdrop-filter: blur(10px);
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;  width: 100%;
-  gap: 2rem;
-  padding: 0 1rem;
-}
-
-.left-section {
-  flex: 1;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pizza-hero-image {
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 8px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.pizza-hero-image:hover {
-  transform: scale(1.05);
-}
-
-.title {
-  font-size: 48px;
-  font-weight: bold;
-  white-space: pre-line;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-  font-family: 'Impact', sans-serif;
-}
-
-.right-section {
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.text-block {
-  font-size: 18px;
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
-  color: #fff;
-  max-width: 90%;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);  font-style: italic;
-}
-
-/* Section Spacer */
-.section-spacer {
-  height: 4rem;
-  background: transparent;
-}
-
 /* Shopping Section */
 .shopping-section {
   backdrop-filter: blur(15px);
@@ -220,9 +131,9 @@ const addToCart = (pizza) => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .section-title {
@@ -236,19 +147,20 @@ const addToCart = (pizza) => {
 
 .pizza-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
   padding: 0;
 }
 
 .pizza-card {
   backdrop-filter: blur(10px);
-  border-radius: 16px;
+  border-radius: 22px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgb(255, 255, 255);
   overflow: hidden;
   transition: all 0.4s ease;
-  height: fit-content;
+  display: flex;
+  flex-direction: row;
 }
 
 .pizza-card:hover {
@@ -259,9 +171,11 @@ const addToCart = (pizza) => {
 }
 
 .card-image {
-  width: 100%;
-  height: 200px;
+  width: 240px;
+  min-width: 240px;
+  min-height: 200px;
   overflow: hidden;
+  border-radius: 22px 0 0 22px;
 }
 
 .card-image img {
@@ -288,6 +202,10 @@ const addToCart = (pizza) => {
 
 .card-content {
   padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pizza-name {
@@ -348,33 +266,17 @@ const addToCart = (pizza) => {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .pizza-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
 
-@media (max-width: 768px) {
-  .pizza-section {
-    padding: 1rem 0;
-    min-height: 100vh;
-  }
-  
+@media (max-width: 600px) {
   .container {
     padding: 0;
     max-width: 100%;
-  }
-  
-  .content-wrapper {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0;
-    text-align: center;
-  }
-  
-  .left-section {
-    width: 100%;
   }
   
   .section-title {
@@ -383,49 +285,28 @@ const addToCart = (pizza) => {
     line-height: 1.2;
   }
   
-  .text-block {
-    font-size: 2.8vmin;
-    line-height: 1.4;
-    margin-bottom: 0.75rem;
-    max-width: 100%;
-    padding: 0;
-  }
-  
-  .right-section {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .pizza-hero-image {
-    width: 20vmax;
-    height: 20vmax;
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 150px;
-    max-height: 150px;
-  }
-  
   .pizza-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5vmin;
+    gap: 0.5rem;
     max-width: 100%;
     margin: 0 auto;
     padding: 0;
   }
   
   .pizza-card {
-    padding: 1vmin;
+    flex-direction: column;
+    padding: 0;
     max-width: 100%;
     border-radius: 2vmin;
   }
   
   .card-image {
+    width: 100%;
+    min-width: 100%;
     height: 25vmin;
     min-height: 120px;
     max-height: 180px;
+    border-radius: 22px 22px 0 0;
   }
   
   .card-content {
@@ -472,45 +353,14 @@ const addToCart = (pizza) => {
 }
 
 @media (max-width: 480px) {
-  .pizza-section {
-    padding: 0.75rem 0.15rem;
-  }
-  
-  .container {
-    padding: 0 0.15rem;
-  }
-  
-  .content-wrapper {
-    padding: 0 0.15rem;
-  }
-  
   .section-title {
     font-size: 5.5vmax;
     line-height: 1.1;
   }
   
-  .text-block {
-    font-size: 3.2vmin;
-    padding: 0;
-  }
-  
-  .pizza-hero-image {
-    width: 22vmax;
-    height: 22vmax;
-    min-width: 90px;
-    min-height: 90px;
-    max-width: 130px;
-    max-height: 130px;
-  }
-  
   .pizza-grid {
-    gap: 0.25vmin;
+    gap: 0.25rem;
     padding: 0;
-  }
-  
-  .pizza-card {
-    padding: 1vmin;
-    border-radius: 1.8vmin;
   }
   
   .card-image {
@@ -547,38 +397,6 @@ const addToCart = (pizza) => {
     font-size: 2.8vmin;
     border-radius: 1.3vmin;
     width: 95%;
-  }
-}
-
-@media (max-width: 360px) {
-  .pizza-section {
-    padding: 0.5rem 0.1rem;
-  }
-  
-  .container {
-    padding: 0 0.1rem;
-  }
-  
-  .content-wrapper {
-    padding: 0 0.1rem;
-  }
-  
-  .pizza-grid {
-    gap: 0.6vmin;
-    padding: 0 0.1rem;
-  }
-  
-  .pizza-card {
-    padding: 1.5vmin;
-  }
-  
-  .card-content {
-    padding: 1.5vmin;
-  }
-  
-  .add-to-cart-btn {
-    width: 98%;
-    font-size: 3vmin;
   }
 }
 </style>

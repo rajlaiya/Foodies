@@ -133,7 +133,7 @@ input, select, textarea {
     text-align: center !important;
   }
 
-  /* Grid layout - single column full width */
+  /* Grid layout - 2 columns on mobile */
   .pizza-grid,
   .burger-grid,
   .meal-grid,
@@ -142,8 +142,8 @@ input, select, textarea {
   .colddrinks-grid,
   .breakfast-grid,
   .alkhol-cards {
-    display: flex !important;
-    flex-direction: column !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem !important;
     width: 100% !important;
     margin: 0 !important;
@@ -163,7 +163,7 @@ input, select, textarea {
     flex-direction: column !important;
     width: 100% !important;
     max-width: 100% !important;
-    border-radius: 16px !important;
+    border-radius: 22px !important;
     background: rgba(30, 25, 40, 0.9) !important;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
     padding: 0 !important;
@@ -184,7 +184,7 @@ input, select, textarea {
     width: 100% !important;
     height: 180px !important;
     min-width: 100% !important;
-    border-radius: 16px 16px 0 0 !important;
+    border-radius: 22px 22px 0 0 !important;
     overflow: hidden !important;
   }
 
@@ -390,7 +390,7 @@ input, select, textarea {
   .drink-img {
     width: 100% !important;
     height: 180px !important;
-    border-radius: 16px 16px 0 0 !important;
+    border-radius: 22px 22px 0 0 !important;
     object-fit: cover !important;
   }
 
